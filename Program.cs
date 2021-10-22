@@ -1,7 +1,8 @@
 using System;
 using SplashKitSDK;
 
-namespace monopoly {
+namespace monopoly
+{
     public class Program
     {
         public static void Main()
