@@ -1,12 +1,12 @@
 ﻿namespace monopoly
 {
-    abstract class PurchasabeTile : Tile
+    abstract class PurchasableTile : Tile
     {
         private int _price, _resaleValue;
         private Player _owner;
         /* protected PurchasableCard _card; */
 
-        public PurchasabeTile(/* PurchasableCard card */ int price, int resaleValue, int loc, string name) : base (loc, name)
+        public PurchasableTile(/* PurchasableCard card */ int price, int resaleValue, int loc, string name) : base (loc, name)
         {
             /* _card = card; */ _owner = null;
             _price = price; _resaleValue = resaleValue;

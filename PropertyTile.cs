@@ -2,7 +2,7 @@
 
 namespace monopoly
 {
-    class PropertyTile : PurchasabeTile
+    class PropertyTile : PurchasableTile
     {
         private Color _clrGroup;
         private int _houseCount;
