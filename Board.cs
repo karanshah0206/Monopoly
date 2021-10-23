@@ -7,8 +7,7 @@ namespace monopoly
         private Dice[] _dice;
         private static List<Player> _players;
         static private Dictionary<int, Tile> _tiles;
-        private static int _currentPlayerIndex;
-        private static int _diceCount;
+        private static int _currentPlayerIndex, _diceCount;
 
         public Board(List<Player> players, Dictionary<int, Tile> tiles)
         {
@@ -18,7 +17,7 @@ namespace monopoly
         }
 
         public int RollDice()
-        { return _diceCount = (_dice[0].Roll() + _dice[1].Roll()) - 1; }
+        { return _diceCount = _dice[0].Roll() + _dice[1].Roll(); }
 
         public static Tile GetTile(int loc)
         {
@@ -31,6 +30,9 @@ namespace monopoly
 
         public static int DiceCount()
         { return _diceCount; }
+
+        public static Player GetCurrentPlayer()
+        { return _players[_currentPlayerIndex]; }
 
         private Dice[] GenerateDice()
         {
