@@ -2,7 +2,7 @@
 
 namespace monopoly
 {
-    class Player
+    public class Player
     {
         private string _name;
         private int _loc, _balance;

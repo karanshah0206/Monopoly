@@ -3,7 +3,7 @@ using SplashKitSDK;
 
 namespace monopoly
 {
-    class TileFactory
+    public class TileFactory
     {
         public Dictionary<int, Tile> CreateTiles(string tileType)
         {

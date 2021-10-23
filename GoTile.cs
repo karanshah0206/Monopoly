@@ -1,6 +1,6 @@
 ﻿namespace monopoly
 {
-    class GoTile : Tile
+    public class GoTile : Tile
     {
         private int _salary;
 

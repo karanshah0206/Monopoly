@@ -1,6 +1,6 @@
 ﻿namespace monopoly
 {
-    class VisitingTile : Tile
+    public class VisitingTile : Tile
     {
         public VisitingTile(int loc, string name) : base (loc, name)
         { }

@@ -1,6 +1,6 @@
 ﻿namespace monopoly
 {
-    abstract class PurchasableTile : Tile
+    public abstract class PurchasableTile : Tile
     {
         private int _price, _resaleValue;
         private Player _owner;

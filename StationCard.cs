@@ -1,6 +1,6 @@
 ﻿namespace monopoly
 {
-    class StationCard : PurchasableCard
+    public class StationCard : PurchasableCard
     {
         public StationCard(int[] rentList, string title) : base (rentList, title)
         { }

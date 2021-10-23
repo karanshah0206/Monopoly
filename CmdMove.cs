@@ -1,6 +1,6 @@
 ﻿namespace monopoly
 {
-    static class CmdMove
+    public static class CmdMove
     {
         public static void MoveToLoc(Player p, int loc, bool passGo = true)
         {

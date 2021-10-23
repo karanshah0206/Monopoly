@@ -1,6 +1,6 @@
 ﻿namespace monopoly
 {
-    class StationTile : PurchasableTile
+    public class StationTile : PurchasableTile
     {
         public StationTile(StationCard card, int price, int resaleValue, int loc, string name) : base (card, price, resaleValue, loc, name)
         { }

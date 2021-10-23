@@ -2,7 +2,7 @@
 
 namespace monopoly
 {
-    class TileGenerator
+    public class TileGenerator
     {
         public Dictionary<int, Tile> GenerateTiles(/* Deck deck = null */)
         {

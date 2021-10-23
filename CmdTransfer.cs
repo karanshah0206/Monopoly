@@ -1,6 +1,6 @@
 ﻿namespace monopoly
 {
-    static class CmdTransfer
+    public static class CmdTransfer
     {
         public static void AddToAccount(Player p, int amount)
         { p.Balance += amount; }

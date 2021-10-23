@@ -1,6 +1,6 @@
 ﻿namespace monopoly
 {
-    class GoToJailTile : Tile
+    public class GoToJailTile : Tile
     {
         public GoToJailTile(int loc) : base(loc, "Go To Jail")
         { }

@@ -1,6 +1,6 @@
 ﻿namespace monopoly
 {
-    abstract class Tile
+    public abstract class Tile
     {
         private int _loc;
         private string _name;

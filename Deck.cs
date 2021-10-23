@@ -2,7 +2,7 @@
 
 namespace monopoly
 {
-    class Deck
+    public class Deck
     {
         private Stack<ICard> _deck = new();
 

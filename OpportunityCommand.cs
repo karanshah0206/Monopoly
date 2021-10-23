@@ -1,6 +1,6 @@
 ﻿namespace monopoly
 {
-    class OpportunityCommand
+    public class OpportunityCommand
     {
         public OpportunityCommand()
         { }

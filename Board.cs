@@ -2,7 +2,7 @@
 
 namespace monopoly
 {
-    class Board
+    public class Board
     {
         private Dice[] _dice;
         private static List<Player> _players;

@@ -1,6 +1,6 @@
 ﻿namespace monopoly
 {
-    abstract class PurchasableCard : ICard
+    public abstract class PurchasableCard : ICard
     {
         protected int[] _rentList;
         private string _title;

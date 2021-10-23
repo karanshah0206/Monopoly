@@ -1,6 +1,6 @@
 ﻿namespace monopoly
 {
-    class OpportunityCard : ICard
+    public class OpportunityCard : ICard
     {
         private OpportunityCommand _command;
         private string _title, _desc, _cmdString;

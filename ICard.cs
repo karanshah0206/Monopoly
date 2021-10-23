@@ -1,6 +1,6 @@
 ﻿namespace monopoly
 {
-    interface ICard
+    public interface ICard
     {
         public string Title { get; }
     }

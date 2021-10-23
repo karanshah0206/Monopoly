@@ -1,6 +1,6 @@
 ﻿namespace monopoly
 {
-    class PropertyCard : PurchasableCard
+    public class PropertyCard : PurchasableCard
     {
         private int _houseCost, _hotelCost;
 

@@ -1,6 +1,6 @@
 ﻿namespace monopoly
 {
-    class TaxTile : Tile
+    public class TaxTile : Tile
     {
         private int _damage;
 

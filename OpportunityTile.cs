@@ -1,6 +1,6 @@
 ﻿namespace monopoly
 {
-    class OpportunityTile : Tile
+    public class OpportunityTile : Tile
     {
         /* Deck _oppDeck; */
         public OpportunityTile(/*Deck d,*/ int loc, string name) : base (loc, name)
