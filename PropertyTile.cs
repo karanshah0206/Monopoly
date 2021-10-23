@@ -8,14 +8,17 @@ namespace monopoly
         private int _houseCount;
         private bool _hasHotel;
 
-        public PropertyTile(/* PropertyCard card, */ Color clr, int price, int resaleValue, int loc, string name) : base (/* card, */ price, resaleValue, loc, name)
+        public PropertyTile(PropertyCard card, Color clr, int price, int resaleValue, int loc, string name) : base (card, price, resaleValue, loc, name)
         {
             _clrGroup = clr;
             _houseCount = 0; _hasHotel = false;
         }
 
         protected override void ChargeRent(Player p)
-        { CmdTransfer.MakePayment(p, 0 /* _card.CalculateRent(house, hotel); */, this.Owner); }
+        {
+            PropertyCard c = (PropertyCard)_card;
+            CmdTransfer.MakePayment(p, c.CalculateRent(_houseCount, _hasHotel), this.Owner);
+        }
 
         public Color ColorGroup
         { get { return _clrGroup; } }
