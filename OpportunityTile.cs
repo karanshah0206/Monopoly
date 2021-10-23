@@ -2,11 +2,10 @@
 {
     public class OpportunityTile : Tile
     {
-        /* Deck _oppDeck; */
-        public OpportunityTile(/*Deck d,*/ int loc, string name) : base (loc, name)
-        { /* _oppDeck = d; */ }
+        public OpportunityTile(int loc, string name) : base (loc, name)
+        { }
 
         public override void Execute(Player p)
-        { /* Draw Card Fro Deck + Relevant Actions -> CMDCard */ }
+        { /* Draw Card From Opportunity Deck + Relevant Actions -> CMDCard */ }
     }
 }
