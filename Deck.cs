@@ -4,17 +4,17 @@ namespace monopoly
 {
     public class Deck
     {
-        private Stack<ICard> _deck = new();
+        private Stack<OpportunityCard> _deck = new();
 
-        public Deck(List<ICard> cards)
-        { foreach (ICard card in cards) _deck.Push(card); }
+        public Deck(List<OpportunityCard> cards)
+        { foreach (OpportunityCard card in cards) _deck.Push(card); }
 
-        public ICard GetTopCard()
+        public OpportunityCard GetTopCard()
         { return _deck.Pop(); }
 
-        public void SendCardToBottom(ICard card)
+        public void SendCardToBottom(OpportunityCard card)
         {
-            Stack<ICard> temp = new();
+            Stack<OpportunityCard> temp = new();
             while (_deck.Count > 0) temp.Push(_deck.Pop());
             _deck.Push(card);
             while (temp.Count > 0) _deck.Push(temp.Pop());
