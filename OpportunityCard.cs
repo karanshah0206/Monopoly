@@ -2,23 +2,21 @@
 {
     public class OpportunityCard : ICard
     {
-        private OpportunityCommand _command;
         private string _title, _desc, _cmdString;
 
         public OpportunityCard(string title, string desc, string command)
-        {
-            _title = title; _desc = desc;
-            _cmdString = command;
-            _command = new OpportunityCommand();
-        }
+        { _title = title; _desc = desc; _cmdString = command; }
 
         public void Execute(Player p)
-        { _command.Execute(p, _cmdString.Split(" ")); }
+        { CommandInterpreter.Execute(p, this); }
 
         public string Title
         { get { return _title; } }
 
         public string Description
         { get { return _desc; } }
+
+        public string Command
+        { get { return _cmdString; } }
     }
 }

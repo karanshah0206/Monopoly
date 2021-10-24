@@ -6,6 +6,9 @@
         { }
 
         public override void Execute(Player p)
-        { /* Draw Card From Opportunity Deck + Relevant Actions -> CMDCard */ }
+        {
+            if (Name == "CHANCE") CmdCardActions.Chance(p);
+            if (Name == "COMMUNITY CHEST") CmdCardActions.CommunityChest(p);
+        }
     }
 }
