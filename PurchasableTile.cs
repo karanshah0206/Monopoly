@@ -32,5 +32,8 @@
             get { return _owner; }
             set { _owner = value; }
         }
+
+        public PurchasableCard Card
+        { get { return _card; } }
     }
 }

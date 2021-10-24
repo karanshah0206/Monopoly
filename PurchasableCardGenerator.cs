@@ -22,7 +22,7 @@ namespace monopoly
             cardsList.Add(new(new int[] { 6, 30, 90, 270, 400, 550 }, 50, "EUSTON ROAD"));
             cardsList.Add(new(new int[] { 8, 40, 100, 300, 450, 600 }, 50, "PENTONVILLE ROAD"));
             cardsList.Add(new(new int[] { 10, 50, 150, 450, 625, 750 }, 100, "PALL MALL"));
-            cardsList.Add(new(new int[] { 10, 50, 150, 450, 625, 750 }, 100, "WHITE HALL"));
+            cardsList.Add(new(new int[] { 10, 50, 150, 450, 625, 750 }, 100, "WHITEHALL"));
             cardsList.Add(new(new int[] { 12, 60, 180, 500, 700, 900 }, 100, "NORTHUMBERL'D AVENUE"));
             cardsList.Add(new(new int[] { 14, 70, 200, 550, 750, 950 }, 100, "BOW STREET"));
             cardsList.Add(new(new int[] { 14, 70, 200, 550, 750, 950 }, 100, "MARLBOROUGH STREET"));

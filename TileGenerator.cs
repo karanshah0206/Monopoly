@@ -4,7 +4,7 @@ namespace monopoly
 {
     public class TileGenerator
     {
-        public Dictionary<int, Tile> GenerateTiles(/* Deck deck = null */)
+        public Dictionary<int, Tile> GenerateTiles()
         {
             TileFactory tileFactory = new TileFactory();
             Dictionary<int, Tile> tiles = new Dictionary<int, Tile>();
@@ -14,7 +14,7 @@ namespace monopoly
             foreach (var tile in tileFactory.CreateTiles("GoToJail")) tiles.Add(tile.Key, tile.Value);
             foreach (var tile in tileFactory.CreateTiles("Tax")) tiles.Add(tile.Key, tile.Value);
             foreach (var tile in tileFactory.CreateTiles("Visiting")) tiles.Add(tile.Key, tile.Value);
-            foreach (var tile in tileFactory.CreateTiles("Purchasable")) tiles.Add(tile.Key, tile.Value);
+            foreach (var tile in tileFactory.CreateTiles("Purchasable", new PurchasableCardGenerator().CreateCards())) tiles.Add(tile.Key, tile.Value);
 
             return tiles;
         }
