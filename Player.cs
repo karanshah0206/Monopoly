@@ -9,7 +9,7 @@ namespace monopoly
         private List<ICard> _cards;
 
         public Player(string name, int balance)
-        { _name = name; _balance = balance; _loc = 0; }
+        { _name = name; _balance = balance; _loc = 0; _cards = new(); }
 
         public void AddCard(ICard card)
         { _cards.Add(card); }
