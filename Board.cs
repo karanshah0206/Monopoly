@@ -8,11 +8,13 @@ namespace monopoly
         private static List<Player> _players;
         static private Dictionary<int, Tile> _tiles;
         private static int _currentPlayerIndex, _diceCount;
+        private static Deck _chance, _communityChest;
 
-        public Board(List<Player> players, Dictionary<int, Tile> tiles)
+        public Board(List<Player> players, Dictionary<int, Tile> tiles, Deck chance, Deck communityChest)
         {
             _tiles = tiles; _players = players;
             _currentPlayerIndex = 0;
+            _chance = chance; _communityChest = communityChest;
             _dice = GenerateDice();
         }
 
@@ -40,5 +42,11 @@ namespace monopoly
             dice[0] = new Dice(); dice[1] = new Dice();
             return dice;
         }
+
+        public static Deck ChanceDeck
+        { get { return _chance; } }
+
+        public static Deck CommunityChestDeck
+        { get { return _communityChest; } }
     }
 }
