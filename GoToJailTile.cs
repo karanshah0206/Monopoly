@@ -7,8 +7,9 @@
 
         public override void Execute(Player p)
         {
-            if (1 == 1 /* Check For Card -> CMDCard */) { /* Return Card -> CMDCard */ }
-            else { /* Send To Jail */ }
+            OpportunityCard c = CmdCardActions.CheckJailBreakCard(p);
+            if (c == null) { /* Send To Jail */ }
+            else { p.Cards.Remove(c); CmdCardActions.ReturnCardToDeck(c); }
         }
     }
 }
