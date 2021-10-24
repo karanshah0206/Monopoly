@@ -8,7 +8,7 @@
         protected override void ChargeRent(Player p)
         {
             StationCard c = (StationCard)_card;
-            CmdTransfer.MakePayment(p, c.CalculateRent(1 /* CmdCard.GetStationCount(this.Owner) */));
+            CmdTransfer.MakePayment(p, c.CalculateRent(CmdCardActions.CountCardsOfType(Owner, typeof(StationCard))), Owner);
         }
     }
 }

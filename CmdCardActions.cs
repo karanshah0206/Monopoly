@@ -1,4 +1,6 @@
-﻿namespace monopoly
+﻿using System;
+
+namespace monopoly
 {
     public class CmdCardActions
     {
@@ -9,6 +11,13 @@
         {
             foreach (ICard c in p.Cards) if (c.GetType() == typeof(OpportunityCard)) return c as OpportunityCard;
             return null;
+        }
+
+        public static int CountCardsOfType(Player p, Type type)
+        {
+            int count = 0;
+            foreach (ICard c in p.Cards) if (c.GetType() == type) count++;
+            return count;
         }
 
         public static int GetPlayerHouseCount(Player p)
