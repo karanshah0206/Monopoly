@@ -8,7 +8,7 @@
         protected override void ChargeRent(Player p)
         {
             ServiceCard c = (ServiceCard)_card;
-            CmdTransfer.MakePayment(p, c.CalculateRent(this.Owner, Board.DiceCount()), this.Owner);
+            CmdTransfer.MakePayment(p, c.CalculateRent(1 /* CmdCard.GetServiceCount(this.Owner) */, Board.DiceCount()), this.Owner);
         }
     }
 }
