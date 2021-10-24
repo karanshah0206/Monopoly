@@ -2,10 +2,10 @@
 {
     public class PropertyCard : PurchasableCard
     {
-        private int _houseCost, _hotelCost;
+        private int _buildableCost;
 
-        public PropertyCard(int[] rentList, int houseCost, int hotelCost, string title) : base (rentList, title)
-        { _houseCost = houseCost; _hotelCost = hotelCost; }
+        public PropertyCard(int[] rentList, int buildableCost, string title) : base (rentList, title)
+        { _buildableCost = buildableCost; }
 
         public int CalculateRent(int houseCount, bool hasHotel)
         {
