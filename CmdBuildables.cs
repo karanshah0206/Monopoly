@@ -2,6 +2,13 @@
 {
     public class CmdBuildables
     {
+        public static bool BuildHouse(Player p, PropertyTile t)
+        {
+            if (CmdCardActions.CheckColorGroupCardsOwned(p, t.ColorGroup) && t.HouseCount < 4)
+            { t.HouseCount++; return true; }
+            return false;
+        }
+
         public static int GetPlayerHouseCount(Player p)
         {
             int count = 0;
