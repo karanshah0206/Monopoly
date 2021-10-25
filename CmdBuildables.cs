@@ -5,7 +5,22 @@
         public static bool BuildHouse(Player p, PropertyTile t)
         {
             if (CmdCardActions.CheckColorGroupCardsOwned(p, t.ColorGroup) && t.HouseCount < 4)
-            { t.HouseCount++; return true; }
+            {
+                PropertyCard c = t.Card as PropertyCard;
+                CmdTransfer.MakePayment(p, c.BuildableCost);
+                t.HouseCount++; return true;
+            }
+            return false;
+        }
+
+        public static bool BuildHotel(Player p, PropertyTile t)
+        {
+            if (t.Owner == p && t.HouseCount == 4 && !t.HasHotel)
+            {
+                PropertyCard c = t.Card as PropertyCard;
+                CmdTransfer.MakePayment(p, c.BuildableCost);
+                t.HasHotel = true; return true;
+            }
             return false;
         }
 

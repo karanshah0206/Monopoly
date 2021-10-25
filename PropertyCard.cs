@@ -17,6 +17,9 @@ namespace monopoly
             return _rentList[total];
         }
 
+        public int BuildableCost
+        { get { return _buildableCost; } }
+
         public Color ColorGroup
         { get { return _clrGroup; } }
     }
