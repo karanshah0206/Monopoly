@@ -20,12 +20,6 @@ namespace monopoly
             return count;
         }
 
-        public static int GetPlayerHouseCount(Player p)
-        { return 0; /* Add Logic */ }
-
-        public static int GetPlayerHotelCount(Player p)
-        { return 0; /* Add Logic */ }
-
         public static void Chance(Player p)
         { Board.ChanceDeck.GetTopCard().Execute(p); }
 

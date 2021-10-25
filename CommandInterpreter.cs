@@ -31,8 +31,8 @@
             {
                 if (cmdString.Length == 3)
                 {
-                    int damage = int.Parse(cmdString[1]) * CmdCardActions.GetPlayerHouseCount(p);
-                    _ = int.Parse(cmdString[2]) * CmdCardActions.GetPlayerHotelCount(p);
+                    int damage = int.Parse(cmdString[1]) * CmdBuildables.GetPlayerHouseCount(p);
+                    _ = int.Parse(cmdString[2]) * CmdBuildables.GetPlayerHotelCount(p);
                     CmdTransfer.MakePayment(p, damage);
                 }
                 else CmdTransfer.MakePayment(p, int.Parse(cmdString[1]));
