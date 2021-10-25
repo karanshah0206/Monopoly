@@ -1,11 +1,14 @@
-﻿namespace monopoly
+﻿using SplashKitSDK;
+
+namespace monopoly
 {
     public class PropertyCard : PurchasableCard
     {
         private int _buildableCost;
+        private Color _clrGroup;
 
-        public PropertyCard(int[] rentList, int buildableCost, string title) : base (rentList, title)
-        { _buildableCost = buildableCost; }
+        public PropertyCard(int[] rentList, int buildableCost, string title, Color clrGroup) : base (rentList, title)
+        { _buildableCost = buildableCost; _clrGroup = clrGroup; }
 
         public int CalculateRent(int houseCount, bool hasHotel)
         {
@@ -13,5 +16,8 @@
             if (hasHotel) total++;
             return _rentList[total];
         }
+
+        public Color ColorGroup
+        { get { return _clrGroup; } }
     }
 }
