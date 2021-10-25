@@ -1,4 +1,6 @@
-﻿namespace monopoly
+﻿using System.Collections.Generic;
+
+namespace monopoly
 {
     public class CmdBuildables
     {
@@ -22,6 +24,31 @@
                 t.HasHotel = true; return true;
             }
             return false;
+        }
+
+        public static void SellBuildables(Player p, PropertyTile t)
+        {
+            int remuneration = 0;
+            List<PropertyTile> tiles = new();
+
+            for (int i = 0; i < 40; i++)
+            {
+                if (Board.GetTile(i).GetType() == typeof(PropertyTile))
+                {
+                    PropertyTile tile = Board.GetTile(i) as PropertyTile;
+                    if (t.ColorGroup.Equals(tile.ColorGroup) && t.Owner == p) tiles.Add(tile);
+                }
+            }
+
+            foreach (PropertyTile tile in tiles)
+            {
+                PropertyCard c = tile.Card as PropertyCard;
+                if (tile.HasHotel) { remuneration += c.BuildableCost / 2; tile.HasHotel = false; }
+                remuneration += (c.BuildableCost / 2) * tile.HouseCount;
+                tile.HouseCount = 0;
+            }
+
+            CmdTransfer.AddToAccount(p, remuneration);
         }
 
         public static int GetPlayerHouseCount(Player p)
