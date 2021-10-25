@@ -8,8 +8,8 @@
         public override void Execute(Player p)
         {
             OpportunityCard c = CmdCardActions.CheckJailBreakCard(p);
-            if (c == null) { /* Send To Jail */ }
-            else { p.Cards.Remove(c); CmdCardActions.ReturnCardToDeck(c); }
+            if (c == null) JailManager.SendToJail(p);
+            else p.Cards.Remove(c); CmdCardActions.ReturnCardToDeck(c);
         }
     }
 }
