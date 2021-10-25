@@ -26,7 +26,7 @@ namespace monopoly
         public int HouseCount
         {
             get { return _houseCount; }
-            set { _houseCount = value; }
+            set { if (_houseCount < 4) _houseCount = value; }
         }
 
         public bool HasHotel
