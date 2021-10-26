@@ -25,7 +25,8 @@
         public static void MakePayment(Player payer, int amount)
         {
             if (payer.Balance >= amount) payer.Balance -= amount;
-            else throw new System.Exception("Not enough money.");
+            else if (IsBankrupt(payer, amount)) { /* Choose Properties To Sell */ }
+            else { /* Player lost. */ }
         }
 
         public static void MakePayment(Player payer, int amount, Player payee)
