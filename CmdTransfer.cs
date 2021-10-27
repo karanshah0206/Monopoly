@@ -25,35 +25,29 @@
         public static void MakePayment(Player payer, int amount)
         {
             if (payer.Balance >= amount) payer.Balance -= amount;
-            else if (IsBankrupt(payer, amount)) { /* Choose Properties To Sell */ }
-            else { /* Player lost. */ }
+            else { /* Not Enough Money */ }
         }
 
         public static void MakePayment(Player payer, int amount, Player payee)
         {
-            MakePayment(payer, amount);
-            AddToAccount(payee, amount);
+            if (payer.Balance < amount)
+            {
+                if (IsBankrupt(payer, amount)) Board.PlayerOut(payer, payee);
+                else { /* Choose Properties To Sell */ }
+            }
+            else { MakePayment(payer, amount); AddToAccount(payee, amount); }
         }
 
         public static bool IsBankrupt(Player p, int paymentDue)
         {
             int networth = p.Balance;
 
-            for (int i = 0; i < 40; i++)
+            foreach (ICard c in p.Cards)
             {
-                if (Board.GetTile(i).GetType() == typeof(PropertyTile))
+                if (c.GetType() == typeof(PurchasableCard))
                 {
-                    PropertyTile t = Board.GetTile(i) as PropertyTile;
-                    PropertyCard c = t.Card as PropertyCard;
-
-                    if (t.Owner == p) networth += t.ResaleValue;
-                    networth += (c.BuildableCost / 2) * t.HouseCount;
-                    if (t.HasHotel) networth += c.BuildableCost / 2;
-                }
-                else if (Board.GetTile(i).GetType() == typeof(StationTile) || Board.GetTile(i).GetType() == typeof(ServiceTile))
-                {
-                    PurchasableTile t = Board.GetTile(i) as PurchasableTile;
-                    if (t.Owner == p) networth += t.ResaleValue;
+                    PurchasableTile t = CmdCardActions.GetTileByCard(c as PurchasableCard);
+                    networth += t.GetValuation();
                 }
             }
 

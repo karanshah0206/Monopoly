@@ -18,9 +18,6 @@ namespace monopoly
             _dice = GenerateDice();
         }
 
-        public int RollDice()
-        { return _diceCount = _dice[0].Roll() + _dice[1].Roll(); }
-
         public static Tile GetTile(int loc)
         {
             foreach (int key in _tiles.Keys) if (key == loc) return _tiles[key];
@@ -30,11 +27,30 @@ namespace monopoly
         public static void NextPlayer()
         { _currentPlayerIndex++; _currentPlayerIndex %= _players.Count; }
 
-        public static int DiceCount()
-        { return _diceCount; }
-
         public static Player GetCurrentPlayer()
         { return _players[_currentPlayerIndex]; }
+
+        public static void PlayerOut(Player p, Player nominee)
+        {
+            foreach (ICard c in p.Cards)
+            {
+                nominee.Cards.Add(c);
+                if (c.GetType() ==  typeof(PropertyCard) || c.GetType() == typeof(StationCard) || c.GetType() == typeof(ServiceCard))
+                    CmdCardActions.GetTileByCard(c as PurchasableCard).Owner = nominee;
+            }
+
+            CmdTransfer.MakePayment(p, p.Balance, nominee);
+            JailManager.RemovePlayer(p);
+            _players.Remove(p);
+
+            if (_currentPlayerIndex == _players.Count) _currentPlayerIndex = 0;
+        }
+
+        public int RollDice()
+        { return _diceCount = _dice[0].Roll() + _dice[1].Roll(); }
+
+        public static int DiceCount()
+        { return _diceCount; }
 
         private Dice[] GenerateDice()
         {

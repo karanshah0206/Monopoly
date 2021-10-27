@@ -17,5 +17,8 @@ namespace monopoly
 
         public static int GetStatus(Player p)
         { return _status[p]; }
+
+        public static void RemovePlayer(Player p)
+        { _status.Remove(p); }
     }
 }

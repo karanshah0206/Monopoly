@@ -31,21 +31,16 @@ namespace monopoly
             int remuneration = 0;
             List<PropertyTile> tiles = new();
 
-            for (int i = 0; i < 40; i++)
-            {
-                if (Board.GetTile(i).GetType() == typeof(PropertyTile))
-                {
-                    PropertyTile tile = Board.GetTile(i) as PropertyTile;
-                    if (t.ColorGroup.Equals(tile.ColorGroup) && t.Owner == p) tiles.Add(tile);
-                }
-            }
+            foreach (ICard c in p.Cards)
+                if (c.GetType() == typeof(PropertyCard))
+                    if (((PropertyCard)c).ColorGroup.Equals(t.ColorGroup))
+                        tiles.Add(CmdCardActions.GetTileByCard(c as PurchasableCard) as PropertyTile);
 
             foreach (PropertyTile tile in tiles)
             {
-                PropertyCard c = tile.Card as PropertyCard;
-                if (tile.HasHotel) { remuneration += c.BuildableCost / 2; tile.HasHotel = false; }
-                remuneration += (c.BuildableCost / 2) * tile.HouseCount;
+                remuneration += tile.GetBuildablesValuation();
                 tile.HouseCount = 0;
+                tile.HasHotel = false;
             }
 
             CmdTransfer.AddToAccount(p, remuneration);
@@ -54,24 +49,18 @@ namespace monopoly
         public static int GetPlayerHouseCount(Player p)
         {
             int count = 0;
-            for (int i = 0; i < 40; i++)
-                if (Board.GetTile(i).GetType() == typeof(PropertyTile))
-                {
-                    PropertyTile t = Board.GetTile(i) as PropertyTile;
-                    if (t.Owner == p) count += t.HouseCount;
-                }
+            foreach (ICard c in p.Cards)
+                if (c.GetType() == typeof(PropertyCard))
+                    count += ((PropertyTile)CmdCardActions.GetTileByCard(c as PropertyCard)).HouseCount;
             return count;
         }
 
         public static int GetPlayerHotelCount(Player p)
         {
             int count = 0;
-            for (int i = 0; i < 40; i++)
-                if (Board.GetTile(i).GetType() == typeof(PropertyTile))
-                {
-                    PropertyTile t = Board.GetTile(i) as PropertyTile;
-                    if (t.Owner == p && t.HasHotel) count++;
-                }
+            foreach (ICard c in p.Cards)
+                if (c.GetType() == typeof(PropertyCard))
+                    if (((PropertyTile)CmdCardActions.GetTileByCard(c as PropertyCard)).HasHotel) count++;
             return count;
         }
     }
