@@ -19,6 +19,9 @@
             else { ChargeRent(p); }
         }
 
+        public virtual int GetValuation()
+        { return _resaleValue; }
+
         protected abstract void ChargeRent(Player p);
 
         public int Price

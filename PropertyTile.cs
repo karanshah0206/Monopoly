@@ -20,6 +20,22 @@ namespace monopoly
             CmdTransfer.MakePayment(p, c.CalculateRent(_houseCount, _hasHotel), this.Owner);
         }
 
+        public int GetBuildablesValuation()
+        {
+            int valuation = 0;
+            valuation += _houseCount * ((PropertyCard)_card).BuildableCost / 2;
+            if (_hasHotel) valuation += ((PropertyCard)_card).BuildableCost / 2;
+            return valuation;
+        }
+
+        public override int GetValuation()
+        {
+            int valuation = 0;
+            valuation += ResaleValue;
+            valuation += GetBuildablesValuation();
+            return valuation;
+        }
+
         public Color ColorGroup
         { get { return _clrGroup; } }
 
