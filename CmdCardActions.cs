@@ -8,6 +8,14 @@ namespace monopoly
         public static void AddCardToPlayer(Player p, ICard c)
         { p.AddCard(c); }
 
+        public static PurchasableTile GetTileByCard(PurchasableCard c)
+        {
+            for (int i = 0; i < 40; i++)
+                if (Board.GetTile(i).GetType() == typeof(PropertyTile) || Board.GetTile(i).GetType() == typeof(ServiceTile) || Board.GetTile(i).GetType() == typeof(StationTile))
+                    if (((PurchasableTile)Board.GetTile(i)).Card == c) return Board.GetTile(i) as PurchasableTile;
+            return null;
+        }
+
         public static OpportunityCard CheckJailBreakCard(Player p)
         {
             foreach (ICard c in p.Cards) if (c.GetType() == typeof(OpportunityCard)) return c as OpportunityCard;
