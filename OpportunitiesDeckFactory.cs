@@ -19,7 +19,7 @@ namespace monopoly
         private Deck CreateCommunityChestDeck()
         {
             List<OpportunityCard> cardsList = new();
-            StreamReader chance = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Monopoly\\community chest.txt");
+            StreamReader chance = new StreamReader("Resources\\Data\\community chest.txt");
             string ln;
 
             while ((ln = chance.ReadLine()) != null)
@@ -34,7 +34,7 @@ namespace monopoly
         private Deck CreateChanceDeck()
         {
             List<OpportunityCard> cardsList = new();
-            StreamReader chance = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Monopoly\\chance.txt");
+            StreamReader chance = new StreamReader("Resources\\Data\\chance.txt");
             string ln;
 
             while ((ln = chance.ReadLine()) != null)
