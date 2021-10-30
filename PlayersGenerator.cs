@@ -40,7 +40,7 @@ namespace monopoly
                 Console.Write("Enter Player {0}'s Name: ", playerCount);
                 name = Console.ReadLine().Trim();
             } while (name == "");
-            return new(name, _initialBalance);
+            return new(name, _initialBalance, new("p" + playerCount.ToString(), "Resources\\Sprites\\p" + playerCount.ToString() + ".png"));
         }
     }
 }

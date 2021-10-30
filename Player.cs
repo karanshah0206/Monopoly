@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using SplashKitSDK;
+using System.Collections.Generic;
 
 namespace monopoly
 {
@@ -7,9 +8,14 @@ namespace monopoly
         private string _name;
         private int _loc, _balance;
         private List<ICard> _cards;
+        private Bitmap _image;
 
-        public Player(string name, int balance)
-        { _name = name; _balance = balance; _loc = 0; _cards = new(); }
+        public Player(string name, int balance, Bitmap image)
+        {
+            _name = name; _balance = balance;
+            _loc = 0; _cards = new();
+            _image = image;
+        }
 
         public void AddCard(ICard card)
         { _cards.Add(card); }
@@ -34,5 +40,8 @@ namespace monopoly
 
         public List<ICard> Cards
         { get { return _cards; } }
+
+        public Bitmap Image
+        { get { return _image; } }
     }
 }
