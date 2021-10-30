@@ -26,6 +26,13 @@ namespace monopoly
         public void Draw()
         {
             int[] coords = GUIController.GetCoordsByTile(_loc);
+            if (_image.Name.Contains('1')) { coords[1] -= 20; }
+            else if (_image.Name.Contains('2')) { coords[1] -= 10; }
+            else if (_image.Name.Contains('4')) { coords[1] += 10; }
+            else if (_image.Name.Contains('5')) { coords[1] -= 20; coords[0] += 20; }
+            else if (_image.Name.Contains('6')) { coords[1] -= 10; coords[0] += 20; }
+            else if (_image.Name.Contains('7')) { coords[0] += 20; }
+            else if (_image.Name.Contains('8')) { coords[1] += 10; coords[0] += 20; }
             SplashKit.DrawBitmap(_image, coords[0], coords[1]);
         }
 

@@ -20,9 +20,9 @@ namespace monopoly
         {
             int[] coords = { 0, 0 };
             if (loc >= 0 && loc < 10) { coords[0] = 920 - (58 * loc); coords[1] = 665; }
-            if (loc >= 10 && loc < 20) { coords[0] = 335; coords[1] = 620 - (58 * (loc - 10)); }
-            if (loc >= 20 && loc < 30) { coords[0] = 365 + (58 * (loc - 20)); coords[1] = 20; }
-            if (loc >= 30 && loc < 40) { coords[0] = 940; coords[1] = 60 + (58 * (loc - 30)); }
+            if (loc >= 10 && loc < 20) { coords[0] = 315; coords[1] = 635 - (58 * (loc - 10)); }
+            if (loc >= 20 && loc < 30) { coords[0] = 345 + (58 * (loc - 20)); coords[1] = 30; }
+            if (loc >= 30 && loc < 40) { coords[0] = 950; coords[1] = 50 + (58 * (loc - 30)); }
             return coords;
         }
     }
