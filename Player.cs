@@ -53,8 +53,5 @@ namespace monopoly
 
         public List<ICard> Cards
         { get { return _cards; } }
-
-        public Bitmap Image
-        { get { return _image; } }
     }
 }

@@ -70,8 +70,5 @@ namespace monopoly
 
         public static Deck CommunityChestDeck
         { get { return _communityChest; } }
-
-        public Bitmap Image
-        { get { return _image; } }
     }
 }
