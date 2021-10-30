@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using SplashKitSDK;
 
 /*
  * TODO:
@@ -28,7 +28,19 @@ namespace monopoly
             List<Player> players = playersGenerator.Execute();
 
             JailManager jailManager = new(players);
-            Board board = new(players, tiles, chance, communityChest);
+            Board board = new(players, tiles, chance, communityChest, new("board", "Resources\\Sprites\\Board.png"));
+            GUIController.AddDrawable(board);
+
+            Sidebar sidebar = new(board);
+            GUIController.AddDrawable(sidebar);
+
+            new Window("Monopoly", 1000, 700);
+            do
+            {
+                SplashKit.ProcessEvents();
+                GUIController.Draw();
+                SplashKit.RefreshScreen();
+            } while (!SplashKit.WindowCloseRequested("Monopoly"));
         }
     }
 }

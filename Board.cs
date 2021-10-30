@@ -70,5 +70,8 @@ namespace monopoly
 
         public static Deck CommunityChestDeck
         { get { return _communityChest; } }
+
+        public List<Player> Players
+        { get { return _players; } }
     }
 }
