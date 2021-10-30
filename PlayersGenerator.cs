@@ -15,7 +15,10 @@ namespace monopoly
             List<Player> players = new();
             int count = GetPlayerCount();
             for (int i = 0; i < count; i++)
-            { players.Add(GetPlayer(i + 1)); }
+            {
+                players.Add(GetPlayer(i + 1));
+                GUIController.AddDrawable(players[i]);
+            }
             return players;
         }
 

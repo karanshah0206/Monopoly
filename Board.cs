@@ -1,19 +1,21 @@
 ﻿using System.Collections.Generic;
+using SplashKitSDK;
 
 namespace monopoly
 {
-    public class Board
+    public class Board : IDrawable
     {
         private Dice[] _dice;
         private static List<Player> _players;
         static private Dictionary<int, Tile> _tiles;
         private static int _currentPlayerIndex, _diceCount;
         private static Deck _chance, _communityChest;
+        private Bitmap _image;
 
-        public Board(List<Player> players, Dictionary<int, Tile> tiles, Deck chance, Deck communityChest)
+        public Board(List<Player> players, Dictionary<int, Tile> tiles, Deck chance, Deck communityChest, Bitmap image)
         {
             _tiles = tiles; _players = players;
-            _currentPlayerIndex = 0;
+            _currentPlayerIndex = 0; _image = image;
             _chance = chance; _communityChest = communityChest;
             _dice = GenerateDice();
         }
@@ -35,12 +37,13 @@ namespace monopoly
             foreach (ICard c in p.Cards)
             {
                 nominee.Cards.Add(c);
-                if (c.GetType() ==  typeof(PropertyCard) || c.GetType() == typeof(StationCard) || c.GetType() == typeof(ServiceCard))
+                if (c.GetType() == typeof(PropertyCard) || c.GetType() == typeof(StationCard) || c.GetType() == typeof(ServiceCard))
                     CmdCardActions.GetTileByCard(c as PurchasableCard).Owner = nominee;
             }
 
             CmdTransfer.MakePayment(p, p.Balance, nominee);
             JailManager.RemovePlayer(p);
+            GUIController.RemoveDrawable(p);
             _players.Remove(p);
 
             if (_currentPlayerIndex == _players.Count) _currentPlayerIndex = 0;
@@ -59,10 +62,16 @@ namespace monopoly
             return dice;
         }
 
+        public void Draw()
+        { SplashKit.DrawBitmap(_image, 300, 0); }
+
         public static Deck ChanceDeck
         { get { return _chance; } }
 
         public static Deck CommunityChestDeck
         { get { return _communityChest; } }
+
+        public Bitmap Image
+        { get { return _image; } }
     }
 }

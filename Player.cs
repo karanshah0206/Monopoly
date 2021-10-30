@@ -1,9 +1,9 @@
-﻿using SplashKitSDK;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using SplashKitSDK;
 
 namespace monopoly
 {
-    public class Player
+    public class Player : IDrawable
     {
         private string _name;
         private int _loc, _balance;
@@ -23,13 +23,19 @@ namespace monopoly
         public void RemoveCard(ICard card)
         { _cards.Remove(card); }
 
+        public void Draw()
+        {
+            int[] coords = GUIController.GetCoordsByTile(_loc);
+            SplashKit.DrawBitmap(_image, coords[0], coords[1]);
+        }
+
         public string Name
         { get { return _name; } }
 
         public int Location
         {
             get { return _loc; }
-            set { _loc = value; }
+            set { _loc = value % 40; }
         }
 
         public int Balance
