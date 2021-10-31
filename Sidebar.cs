@@ -15,9 +15,14 @@ namespace monopoly
             SplashKit.DrawText("Players:", Color.Black, 5, 10);
             for (int i = 0; i < _board.Players.Count; i++)
             {
+                Player p = _board.Players[i];
+                int jailStatus = JailManager.GetStatus(p);
+                string text = p.Name + "($" + p.Balance + ")";
                 Color textClr = Color.Black;
-                if (_board.Players[i] == Board.GetCurrentPlayer()) textClr = Color.Red;
-                SplashKit.DrawText(_board.Players[i].Name + " ($" + _board.Players[i].Balance + ")", textClr, 10, 20 + (10 * i));
+
+                if (jailStatus > 0) text += " (Jailed for " + jailStatus + " rounds)";
+                if (p == Board.GetCurrentPlayer()) textClr = Color.Red;
+                SplashKit.DrawText(text, textClr, 10, 20 + (10 * i));
             }
         }
     }
