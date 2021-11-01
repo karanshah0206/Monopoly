@@ -59,10 +59,7 @@ namespace monopoly
         }
 
         public static void DrawOpportunity(ICard card)
-        {
-            _currentCard = card;
-            _state = 1;
-        }
+        { _currentCard = card; _state = 1; }
 
         public static void DrawPurchasable(int type, ICard card)
         {
