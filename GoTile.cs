@@ -8,6 +8,15 @@
         { _salary = salary; }
 
         public override void Execute(Player p)
-        { CmdTransfer.AddToAccount(p, _salary); }
+        {
+            CmdTransfer.AddToAccount(p, _salary);
+            Board.NextPlayer();
+        }
+
+        public void Execute(Player p, bool nextPlayer)
+        {
+            CmdTransfer.AddToAccount(p, _salary);
+            if (nextPlayer) Board.NextPlayer();
+        }
     }
 }

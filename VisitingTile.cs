@@ -6,6 +6,6 @@
         { }
 
         public override void Execute(Player p)
-        { /* No Action Needed, "Just Visiting". */ }
+        { Board.NextPlayer(); }
     }
 }

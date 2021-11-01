@@ -9,7 +9,12 @@
         {
             OpportunityCard c = CmdCardActions.CheckJailBreakCard(p);
             if (c == null) JailManager.SendToJail(p);
-            else { p.Cards.Remove(c); CmdCardActions.ReturnCardToDeck(c); }
+            else
+            {
+                p.Cards.Remove(c);
+                CmdCardActions.ReturnCardToDeck(c);
+                CmdMove.MoveToLoc(p, 10, false);
+            }
         }
     }
 }

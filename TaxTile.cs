@@ -8,6 +8,9 @@
         { _damage = damage; }
 
         public override void Execute(Player p)
-        { CmdTransfer.MakePayment(p, _damage); }
+        {
+            CmdTransfer.MakePayment(p, _damage);
+            Board.NextPlayer();
+        }
     }
 }
