@@ -14,7 +14,7 @@ namespace monopoly
             _houseCount = 0; _hasHotel = false;
         }
 
-        protected override void ChargeRent(Player p)
+        public override void ChargeRent(Player p)
         {
             PropertyCard c = (PropertyCard)_card;
             CmdTransfer.MakePayment(p, c.CalculateRent(_houseCount, _hasHotel), this.Owner);

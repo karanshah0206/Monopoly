@@ -14,15 +14,15 @@
 
         public override void Execute(Player p)
         {
-            if (_owner == null) { /* Offer Purchase -> Sidebar Controller */ }
-            else if (_owner == p) { /* No consequences for owner. */ }
-            else { ChargeRent(p); }
+            if (_owner == null) { Sidebar.DrawPurchasable(0, _card); }
+            else if (_owner == p) { Board.NextPlayer(); }
+            else { Sidebar.DrawPurchasable(1, _card); }
         }
 
         public virtual int GetValuation()
         { return _resaleValue; }
 
-        protected abstract void ChargeRent(Player p);
+        public abstract void ChargeRent(Player p);
 
         public int Price
         { get { return _price; } }
