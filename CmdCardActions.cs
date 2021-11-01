@@ -44,10 +44,10 @@ namespace monopoly
         }
 
         public static void Chance(Player p)
-        { Board.ChanceDeck.GetTopCard().Execute(p); }
+        { Sidebar.DrawOpportunity(Board.ChanceDeck.GetTopCard()); }
 
         public static void CommunityChest(Player p)
-        { Board.CommunityChestDeck.GetTopCard().Execute(p); }
+        { Sidebar.DrawOpportunity(Board.CommunityChestDeck.GetTopCard()); }
 
         public static void ReturnCardToDeck(OpportunityCard c)
         {

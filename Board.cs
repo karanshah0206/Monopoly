@@ -27,7 +27,11 @@ namespace monopoly
         }
 
         public static void NextPlayer()
-        { _currentPlayerIndex++; _currentPlayerIndex %= _players.Count; }
+        {
+            Sidebar.DrawEventsMenu();
+            _currentPlayerIndex++;
+            _currentPlayerIndex %= _players.Count;
+        }
 
         public static Player GetCurrentPlayer()
         { return _players[_currentPlayerIndex]; }

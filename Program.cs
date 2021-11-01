@@ -4,8 +4,6 @@ using SplashKitSDK;
 /*
  * TODO:
  * SidebarController (Make Relevant Changes In PurchasableTile, CMDTransfer)
- * Add Images To All Required Classes
- * IDrawable + GUI
  *
  * TODO OPTIONAL:
  * Create File Purchasables (TileFactory, PurchasableCardGenerator)
@@ -36,6 +34,7 @@ namespace monopoly
 
             new Window("Monopoly", 1000, 700);
             new Font("Roboto", "Resources\\Fonts\\Roboto-Regular.ttf");
+
             do
             {
                 SplashKit.ProcessEvents();
