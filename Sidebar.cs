@@ -61,7 +61,6 @@ namespace monopoly
         public static void DrawOpportunity(ICard card)
         {
             _currentCard = card;
-            /* When executing: ((OpportunityCard)_currentCard).Execute(Board.GetCurrentPlayer()); */
             _state = 1;
         }
 
@@ -75,7 +74,6 @@ namespace monopoly
         private void DrawOpportunityMenu()
         {
             _currentCard.Draw();
-            /* When Executing: CmdCardActions.GetTileByCard(_currentCard as PurchasableCard).ChargeRent(Board.GetCurrentPlayer()); */
             new Button(Color.Yellow, "Execute", 10, 500).Draw();
         }
 
@@ -100,6 +98,34 @@ namespace monopoly
         {
             _currentCard.Draw();
             new Button(Color.Yellow, "Pay Rent", 10, 500).Draw();
+        }
+
+        public void ClickHandler(double x, double y)
+        {
+            switch (_state)
+            {
+                case 0:
+                    if (x >= 10 && x <= 160 && y >= 190 && y <= 215) CmdMove.MoveByCount(Board.GetCurrentPlayer(), _board.RollDice());
+                    else if (x >= 10 && x <= 160 && y >= 230 && y <= 255) { /* Sell Properties */ }
+                    else if (x >= 10 && x <= 160 && y >= 270 && y <= 295) { /* Build Houses */ }
+                    break;
+                case 1:
+                    if (x >= 10 && x <= 160 && y >= 500 && y <= 525) ((OpportunityCard)_currentCard).Execute(Board.GetCurrentPlayer());
+                    break;
+                case 2:
+                    if (x >= 10 && x <= 160 && y >= 500 && y <= 525) CmdTransfer.BuyProperty(Board.GetCurrentPlayer(), CmdCardActions.GetTileByCard(_currentCard as PurchasableCard));
+                    else if (x >= 10 && x <= 160 && y >= 540 && y <= 565) Board.NextPlayer();
+                    break;
+                case 3:
+                    if (x >= 10 && x <= 160 && y >= 500 && y <= 525)
+                        CmdCardActions.GetTileByCard(_currentCard as PurchasableCard).ChargeRent(Board.GetCurrentPlayer());
+                    break;
+                case 4:
+                    if (x >= 10 && x <= 160 && y >= 190 && y <= 215) JailManager.ReleaseNow(Board.GetCurrentPlayer());
+                    else if (x >= 10 && x <= 160 && y >= 230 && y <= 255) JailManager.DecrementSentence(Board.GetCurrentPlayer());
+                    break;
+                default: break;
+            }
         }
     }
 }

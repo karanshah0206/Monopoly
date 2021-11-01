@@ -9,6 +9,7 @@
         {
             ServiceCard c = (ServiceCard)_card;
             CmdTransfer.MakePayment(p, c.CalculateRent(CmdCardActions.CountCardsOfType(this.Owner, typeof(ServiceCard)), Board.DiceCount()), Owner);
+            Board.NextPlayer();
         }
     }
 }

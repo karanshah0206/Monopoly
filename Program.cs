@@ -3,7 +3,7 @@ using SplashKitSDK;
 
 /*
  * TODO:
- * SidebarController (Make Relevant Changes In PurchasableTile, CMDTransfer)
+ * SidebarController (Make Relevant Changes In CMDTransfer)
  *
  * TODO OPTIONAL:
  * Create File Purchasables (TileFactory, PurchasableCardGenerator)
@@ -39,6 +39,7 @@ namespace monopoly
             {
                 SplashKit.ProcessEvents();
                 GUIController.Draw();
+                if (SplashKit.MouseClicked(MouseButton.LeftButton)) sidebar.ClickHandler(SplashKit.MousePosition().X, SplashKit.MousePosition().Y);
                 SplashKit.RefreshScreen();
             } while (!SplashKit.WindowCloseRequested("Monopoly"));
         }

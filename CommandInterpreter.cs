@@ -9,8 +9,12 @@
             switch(cmdString[0])
             {
                 case "move": Move(p, cmdString); CmdCardActions.ReturnCardToDeck(c); break;
-                case "pay": case "earn": Transaction(p, cmdString); CmdCardActions.ReturnCardToDeck(c); break;
-                case "keep": Keep(p, c); break;
+                case "pay": case "earn":
+                    Transaction(p, cmdString);
+                    CmdCardActions.ReturnCardToDeck(c);
+                    Board.NextPlayer();
+                    break;
+                case "keep": Keep(p, c); Board.NextPlayer(); break;
             }
         }
 

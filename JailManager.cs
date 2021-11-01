@@ -13,7 +13,10 @@ namespace monopoly
         { _status[p] = 3; CmdMove.MoveToLoc(p, 10, false); }
 
         public static void DecrementSentence(Player p)
-        { if (_status[p] != 0) _status[p]--; }
+        { if (_status[p] != 0) _status[p]--; Board.NextPlayer(); }
+
+        public static void ReleaseNow(Player p)
+        { _status[p] = 0; CmdTransfer.MakePayment(p, 200); }
 
         public static int GetStatus(Player p)
         { return _status[p]; }

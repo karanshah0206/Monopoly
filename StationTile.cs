@@ -9,6 +9,7 @@
         {
             StationCard c = (StationCard)_card;
             CmdTransfer.MakePayment(p, c.CalculateRent(CmdCardActions.CountCardsOfType(Owner, typeof(StationCard))), Owner);
+            Board.NextPlayer();
         }
     }
 }

@@ -18,6 +18,7 @@ namespace monopoly
         {
             PropertyCard c = (PropertyCard)_card;
             CmdTransfer.MakePayment(p, c.CalculateRent(_houseCount, _hasHotel), this.Owner);
+            Board.NextPlayer();
         }
 
         public int GetBuildablesValuation()

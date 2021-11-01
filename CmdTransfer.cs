@@ -7,6 +7,7 @@
             MakePayment(p, t.Price);
             t.Owner = p;
             p.Cards.Add(t.Card);
+            Board.NextPlayer();
         }
 
         public static void SellProperty(Player p, PurchasableTile t)
