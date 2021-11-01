@@ -17,6 +17,16 @@ namespace monopoly
             return _rentList[total];
         }
 
+        public override void Draw()
+        {
+            base.Draw();
+            SplashKit.FillRectangle(_clrGroup, 230, 190, 20, 30);
+            for (int i = 0; i < _rentList.Length; i++)
+                if (i == 5) SplashKit.DrawText("Rent with hotel", Color.Black, "Roboto", 12, 15, 230 + i * 35);
+                else SplashKit.DrawText("Rent with " + i + " house", Color.Black, "Roboto", 12, 15, 230 + i * 35);
+            SplashKit.DrawText("House Cost: $" + _buildableCost + " | Hotel Cost: $" + _buildableCost, Color.Black, "Roboto", 12, 15, 450);
+        }
+
         public int BuildableCost
         { get { return _buildableCost; } }
 

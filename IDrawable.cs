@@ -2,7 +2,7 @@
 
 namespace monopoly
 {
-    interface IDrawable
+    public interface IDrawable
     {
         public void Draw();
     }
