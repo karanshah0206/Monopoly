@@ -62,7 +62,8 @@ namespace monopoly
         private Dice[] GenerateDice()
         {
             Dice[] dice = new Dice[2];
-            dice[0] = new Dice(); dice[1] = new Dice();
+            dice[0] = new Dice("d1", 610, 560); dice[1] = new Dice("d2", 660, 560);
+            foreach(IDrawable d in dice) GUIController.AddDrawable(d);
             return dice;
         }
 
