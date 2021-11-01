@@ -1,6 +1,6 @@
 ﻿namespace monopoly
 {
-    public interface ICard
+    public interface ICard : IDrawable
     {
         public string Title { get; }
     }
