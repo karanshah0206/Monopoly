@@ -35,6 +35,7 @@ namespace monopoly
             GUIController.AddDrawable(sidebar);
 
             new Window("Monopoly", 1000, 700);
+            new Font("Roboto", "Resources\\Fonts\\Roboto-Regular.ttf");
             do
             {
                 SplashKit.ProcessEvents();
