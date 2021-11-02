@@ -8,13 +8,18 @@ namespace monopoly
         {
             TileFactory tileFactory = new TileFactory();
             Dictionary<int, Tile> tiles = new Dictionary<int, Tile>();
+            GUIController guiController = GUIController.GetInstance();
 
             foreach (var tile in tileFactory.CreateTiles("Opportunity")) tiles.Add(tile.Key, tile.Value);
             foreach (var tile in tileFactory.CreateTiles("Go")) tiles.Add(tile.Key, tile.Value);
             foreach (var tile in tileFactory.CreateTiles("GoToJail")) tiles.Add(tile.Key, tile.Value);
             foreach (var tile in tileFactory.CreateTiles("Tax")) tiles.Add(tile.Key, tile.Value);
             foreach (var tile in tileFactory.CreateTiles("Visiting")) tiles.Add(tile.Key, tile.Value);
-            foreach (var tile in tileFactory.CreateTiles("Purchasable", new PurchasableCardGenerator().CreateCards())) tiles.Add(tile.Key, tile.Value);
+            foreach (var tile in tileFactory.CreateTiles("Purchasable", new PurchasableCardGenerator().CreateCards()))
+            {
+                tiles.Add(tile.Key, tile.Value);
+                guiController.AddDrawable(tile.Value as PurchasableTile);
+            }
 
             return tiles;
         }
