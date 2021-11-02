@@ -10,14 +10,16 @@
             Board.NextPlayer();
         }
 
-        public static void SellProperty(Player p, PurchasableTile t)
+        public static bool SellProperty(Player p, PurchasableTile t)
         {
             if (t.Owner == p)
             {
                 if (t.GetType() == typeof(PropertyTile)) CmdBuildables.SellBuildables(p, t as PropertyTile);
                 t.Owner = null; p.Cards.Remove(t.Card);
                 AddToAccount(p, t.ResaleValue);
+                return true;
             }
+            return false;
         }
 
         public static void AddToAccount(Player p, int amount)
@@ -45,7 +47,7 @@
 
             foreach (ICard c in p.Cards)
             {
-                if (c.GetType() == typeof(PurchasableCard))
+                if (c.GetType() == typeof(PropertyCard) || c.GetType() == typeof(StationCard) || c.GetType() == typeof(ServiceCard))
                 {
                     PurchasableTile t = CmdCardActions.GetTileByCard(c as PurchasableCard);
                     networth += t.GetValuation();
