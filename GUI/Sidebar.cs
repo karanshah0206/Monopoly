@@ -8,9 +8,14 @@ namespace monopoly
         private static int _state;
         private static ICard _currentCard;
         private static GUIController _guiController;
+        private static SoundEffect _alertSound;
 
         public Sidebar(Board board)
-        { _board = board; _guiController = GUIController.GetInstance(); }
+        {
+            _board = board;
+            _guiController = GUIController.GetInstance();
+            _alertSound = new("alert", "alert.mp3");
+        }
 
         public void Draw()
         {
@@ -110,11 +115,11 @@ namespace monopoly
             if (SplashKit.MouseClicked(MouseButton.LeftButton))
             {
                 tile = _guiController.GetTileByClick(SplashKit.MousePosition().X, SplashKit.MousePosition().Y) as PropertyTile;
-                if (tile == null) { /* Invalid Selection */ }
+                if (tile == null) { _alertSound.Play(); }
                 else
                 {
                     if (CmdBuildables.BuildHouse(Board.GetCurrentPlayer(), tile)) Board.NextPlayer();
-                    else { /* Cannot Build */ }
+                    else { _alertSound.Play(); }
                 }
             }
         }
@@ -127,11 +132,11 @@ namespace monopoly
             if (SplashKit.MouseClicked(MouseButton.LeftButton))
             {
                 tile = _guiController.GetTileByClick(SplashKit.MousePosition().X, SplashKit.MousePosition().Y) as PropertyTile;
-                if (tile == null) { /* Invalid Selection */ }
+                if (tile == null) { _alertSound.Play(); }
                 else
                 {
                     if (CmdBuildables.BuildHotel(Board.GetCurrentPlayer(), tile)) Board.NextPlayer();
-                    else { /* Cannot Build */ }
+                    else { _alertSound.Play(); }
                 }
             }
         }
@@ -154,11 +159,11 @@ namespace monopoly
                 else
                 {
                     tile = _guiController.GetTileByClick(x, y) as PurchasableTile;
-                    if (tile == null) { /* Invalid Selection */ }
+                    if (tile == null) { _alertSound.Play(); }
                     else
                     {
                         if (CmdTransfer.SellProperty(Board.GetCurrentPlayer(), tile)) { /* Sold Successfully */ }
-                        else { /* Cannot Sell */ }
+                        else { _alertSound.Play(); }
                     }
                 }
             }

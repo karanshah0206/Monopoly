@@ -1,11 +1,6 @@
 using System.Collections.Generic;
 using SplashKitSDK;
 
-/*
- * TODO:
- * Sidebar -> Sound When Unable To Build
- */
-
 namespace monopoly
 {
     public class Program
