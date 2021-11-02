@@ -63,5 +63,13 @@ namespace monopoly
             else if (name.Contains('7')) return Color.Orange;
             else return Color.Brown;
         }
+
+        public void DrawHouse(int x, int y, int loc)
+        {
+            if (loc > 0 && loc < 10) SplashKit.FillRectangle(Color.LightCoral, x + 45, y - 74, 10, 15);
+            else if (loc > 10 && loc < 20) SplashKit.FillRectangle(Color.LightCoral, x + 73, y + 45, 15, 10);
+            else if (loc > 20 && loc < 30) SplashKit.FillRectangle(Color.LightCoral, x - 44, y + 68, 10, 15);
+            else SplashKit.FillRectangle(Color.LightCoral, x - 73, y - 45, 15, 10);
+        }
     }
 }

@@ -37,6 +37,12 @@ namespace monopoly
             return valuation;
         }
 
+        public override void Draw()
+        {
+            base.Draw();
+            if (HasHotel) _guiController.DrawHouse(_coords[0], _coords[1], Location);
+        }
+
         public Color ColorGroup
         { get { return _clrGroup; } }
 

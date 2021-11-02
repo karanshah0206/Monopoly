@@ -8,7 +8,7 @@ namespace monopoly
         private Player _owner;
         protected GUIController _guiController;
         protected PurchasableCard _card;
-        int[] _coords;
+        protected int[] _coords;
 
         public PurchasableTile(PurchasableCard card, int price, int resaleValue, int loc, string name) : base (loc, name)
         {
