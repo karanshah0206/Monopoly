@@ -27,17 +27,13 @@
 
         public static void MakePayment(Player payer, int amount)
         {
-            if (payer.Balance >= amount) payer.Balance -= amount;
-            else { /* Not Enough Money */ }
+            if (!IsBankrupt(payer, amount)) { payer.Balance -= amount; }
+            else Board.PlayerOut(payer, null);
         }
 
         public static void MakePayment(Player payer, int amount, Player payee)
         {
-            if (payer.Balance < amount)
-            {
-                if (IsBankrupt(payer, amount)) Board.PlayerOut(payer, payee);
-                else { /* Choose Properties To Sell */ }
-            }
+            if (payer.Balance < amount && IsBankrupt(payer, amount)) Board.PlayerOut(payer, payee);
             else { MakePayment(payer, amount); AddToAccount(payee, amount); }
         }
 

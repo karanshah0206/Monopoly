@@ -22,6 +22,9 @@ namespace monopoly
                 case 2: DrawPurchaseMenu(); break;
                 case 3: DrawRentMenu(); break;
                 case 4: DrawJailMenu(); break;
+                case 5: DrawHouseMenu(); break;
+                case 6: DrawHotelMenu(); break;
+                case 7: DrawSellMenu(); break;
                 default: break;
             }
         }
@@ -48,12 +51,14 @@ namespace monopoly
         public static void DrawEventsMenu()
         {
             if (JailManager.GetStatus(Board.GetCurrentPlayer()) != 0) _state = 4;
+            if (Board.GetCurrentPlayer().Balance < 0) _state = 7;
             else
             {
                 SplashKit.DrawText("Pick an event:", Color.Black, "Roboto", 20, 5, 160);
                 new Button(Color.Yellow, "Roll Dice", 10, 190).Draw();
                 new Button(Color.Yellow, "Sell Properties", 10, 230).Draw();
-                new Button(Color.Yellow, "Build House/Hotel", 10, 270).Draw();
+                new Button(Color.Yellow, "Build House", 10, 270).Draw();
+                new Button(Color.Yellow, "Build Hotel", 10, 310).Draw();
                 _state = 0;
             }
         }
@@ -97,14 +102,77 @@ namespace monopoly
             new Button(Color.Yellow, "Pay Rent", 10, 500).Draw();
         }
 
+        public void DrawHouseMenu()
+        {
+            PropertyTile tile;
+            SplashKit.DrawText("Select A Property", Color.Black, "Roboto", 20, 5, 160);
+            new Button(Color.Yellow, "Cancel", 10, 190).Draw();
+            if (SplashKit.MouseClicked(MouseButton.LeftButton))
+            {
+                tile = GetTileByClick(SplashKit.MousePosition().X, SplashKit.MousePosition().Y) as PropertyTile;
+                if (tile == null) { System.Console.WriteLine("Invalid Selection"); /* Invalid Selection */ }
+                else
+                {
+                    if (CmdBuildables.BuildHouse(Board.GetCurrentPlayer(), tile)) Board.NextPlayer();
+                    else { System.Console.WriteLine("Cannot Build"); /* Cannot Build */ }
+                }
+            }
+        }
+
+        public void DrawHotelMenu()
+        {
+            PropertyTile tile;
+            SplashKit.DrawText("Select A Property", Color.Black, "Roboto", 20, 5, 160);
+            new Button(Color.Yellow, "Cancel", 10, 190).Draw();
+            if (SplashKit.MouseClicked(MouseButton.LeftButton))
+            {
+                tile = GetTileByClick(SplashKit.MousePosition().X, SplashKit.MousePosition().Y) as PropertyTile;
+                if (tile == null) { /* Invalid Selection */ }
+                else
+                {
+                    if (CmdBuildables.BuildHotel(Board.GetCurrentPlayer(), tile)) Board.NextPlayer();
+                    else { /* Cannot Build */ }
+                }
+            }
+        }
+
+        public static void DrawSellMenu()
+        {
+            _state = 7;
+
+            bool canQuit = (Board.GetCurrentPlayer().Balance >= 0);
+            PurchasableTile tile;
+
+            SplashKit.DrawText("Select A Property To Sell", Color.Black, "Roboto", 20, 5, 160);
+            if (!canQuit) SplashKit.DrawText("(Must have at least $" + 0 + ")", Color.Black, "Roboto", 12, 5, 190);
+            if (canQuit) new Button(Color.Yellow, "Done", 10, 670).Draw();
+
+            if (SplashKit.MouseClicked(MouseButton.LeftButton))
+            {
+                double x = SplashKit.MousePosition().X; double y = SplashKit.MousePosition().Y;
+                if (x >= 10 && x <= 160 && y >= 670 && y <= 695 && canQuit) { DrawEventsMenu(); }
+                else
+                {
+                    tile = GetTileByClick(x, y) as PurchasableTile;
+                    if (tile == null) { System.Console.WriteLine("Invalid"); /* Invalid Selection */ }
+                    else
+                    {
+                        if (CmdTransfer.SellProperty(Board.GetCurrentPlayer(), tile)) { System.Console.WriteLine("Sold"); /* Sold Successfully */ }
+                        else { System.Console.WriteLine("Could Not Sell");  /* Cannot Sell */ }
+                    }
+                }
+            }
+        }
+
         public void ClickHandler(double x, double y)
         {
             switch (_state)
             {
                 case 0:
                     if (x >= 10 && x <= 160 && y >= 190 && y <= 215) CmdMove.MoveByCount(Board.GetCurrentPlayer(), _board.RollDice());
-                    else if (x >= 10 && x <= 160 && y >= 230 && y <= 255) { /* Sell Properties */ }
-                    else if (x >= 10 && x <= 160 && y >= 270 && y <= 295) { /* Build Houses */ }
+                    else if (x >= 10 && x <= 160 && y >= 230 && y <= 255) { DrawSellMenu(); }
+                    else if (x >= 10 && x <= 160 && y >= 270 && y <= 295) { _state = 5; }
+                    else if (x >= 10 && x <= 160 && y >= 310 && y <= 335) { _state = 6; }
                     break;
                 case 1:
                     if (x >= 10 && x <= 160 && y >= 500 && y <= 525) ((OpportunityCard)_currentCard).Execute(Board.GetCurrentPlayer());
@@ -121,11 +189,15 @@ namespace monopoly
                     if (x >= 10 && x <= 160 && y >= 190 && y <= 215) JailManager.ReleaseNow(Board.GetCurrentPlayer());
                     else if (x >= 10 && x <= 160 && y >= 230 && y <= 255) JailManager.DecrementSentence(Board.GetCurrentPlayer());
                     break;
+                case 5:
+                case 6:
+                    if (x >= 10 && x <= 160 && y >= 190 && y <= 215) _state = 0;
+                    break;
                 default: break;
             }
         }
 
-        private Tile GetTileByClick(double x, double y)
+        private static Tile GetTileByClick(double x, double y)
         {
             if (y <= 88)
             {
