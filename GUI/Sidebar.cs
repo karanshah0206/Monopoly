@@ -8,13 +8,14 @@ namespace monopoly
         private static int _state;
         private static ICard _currentCard;
         private static GUIController _guiController;
-        private static SoundEffect _alertSound;
+        private static SoundEffect _alertSound, _stepSound;
 
         public Sidebar(Board board)
         {
             _board = board;
             _guiController = GUIController.GetInstance();
             _alertSound = new("alert", "alert.mp3");
+            _stepSound = new("step", "step.mp3");
         }
 
         public void Draw()
@@ -174,7 +175,7 @@ namespace monopoly
             switch (_state)
             {
                 case 0:
-                    if (x >= 10 && x <= 160 && y >= 190 && y <= 215) CmdMove.MoveByCount(Board.GetCurrentPlayer(), _board.RollDice());
+                    if (x >= 10 && x <= 160 && y >= 190 && y <= 215) { _stepSound.Play(); CmdMove.MoveByCount(Board.GetCurrentPlayer(), _board.RollDice()); }
                     else if (x >= 10 && x <= 160 && y >= 230 && y <= 255) { DrawSellMenu(); }
                     else if (x >= 10 && x <= 160 && y >= 270 && y <= 295) { _state = 5; }
                     else if (x >= 10 && x <= 160 && y >= 310 && y <= 335) { _state = 6; }
