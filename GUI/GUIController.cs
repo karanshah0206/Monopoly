@@ -39,35 +39,15 @@ namespace monopoly
         public Tile GetTileByClick(double x, double y)
         {
             if (y <= 88)
-            {
                 if (x <= 392) return Board.GetTile(20);
                 else if (x >= 912) return Board.GetTile(30);
-                else
-                {
-                    x -= 392; x = System.Math.Floor(x / 58); x += 21;
-                    return Board.GetTile((int)x);
-                }
-            }
+                else return Board.GetTile((int)(System.Math.Floor((x - 392) / 58) + 21));
             else if (y >= 612)
-            {
                 if (x <= 392) return Board.GetTile(10);
                 else if (x >= 912) return Board.GetTile(0);
-                else
-                {
-                    x -= 392; x = System.Math.Floor(x / 58); x = 9 - x;
-                    return Board.GetTile((int)x);
-                }
-            }
-            else if (x >= 912)
-            {
-                y -= 88; y = System.Math.Floor(y / 58); y += 31;
-                return Board.GetTile((int)y);
-            }
-            else if (x <= 392)
-            {
-                y -= 88; y = System.Math.Floor(y / 58); y = 9 - y; y += 10;
-                return Board.GetTile((int)y);
-            }
+                else return Board.GetTile((int)(9 - System.Math.Floor((x - 392) / 58)));
+            else if (x >= 912) return Board.GetTile((int)(System.Math.Floor((y - 88) / 58) + 31));
+            else if (x <= 392 && x >= 300) return Board.GetTile((int)(19 - System.Math.Floor((y - 88) / 58)));
             return null;
         }
     }
