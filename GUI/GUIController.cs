@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace monopoly
 {
-    class GUIController
+    public class GUIController
     {
         private static GUIController _guiController;
         private List<IDrawable> _drawables;
@@ -61,7 +61,7 @@ namespace monopoly
             else if (name.Contains('5')) return Color.DarkGray;
             else if (name.Contains('6')) return Color.White;
             else if (name.Contains('7')) return Color.Orange;
-            else return Color.SandyBrown;
+            else return Color.Brown;
         }
     }
 }

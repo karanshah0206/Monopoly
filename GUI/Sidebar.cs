@@ -14,8 +14,8 @@ namespace monopoly
 
         public void Draw()
         {
-            DrawBackground();
-            DrawPlayers();
+            SplashKit.FillRectangle(Color.LightGray, 0, 0, 300, 700);
+            DrawPlayersList();
             switch (_state)
             {
                 case 0: DrawEventsMenu(); break;
@@ -30,10 +30,7 @@ namespace monopoly
             }
         }
 
-        private void DrawBackground()
-        { SplashKit.FillRectangle(Color.LightGray, 0, 0, 300, 700); }
-
-        private void DrawPlayers()
+        private void DrawPlayersList()
         {
             SplashKit.DrawText("Players:", Color.Black, "Roboto", 15, 5, 10);
             for (int i = 0; i < _board.Players.Count; i++)
@@ -45,6 +42,7 @@ namespace monopoly
 
                 if (jailStatus > 0) text += " (Jailed for " + jailStatus + " rounds)";
                 if (p == Board.GetCurrentPlayer()) textClr = Color.Red;
+                SplashKit.FillCircle(p.Color, 5, 37 + (15 * i), 3);
                 SplashKit.DrawText(text, textClr, "Roboto", 12, 10, 30 + (15 * i));
             }
         }
