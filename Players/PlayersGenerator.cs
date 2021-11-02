@@ -6,9 +6,13 @@ namespace monopoly
     class PlayersGenerator
     {
         private int _initialBalance;
+        private GUIController _guiController;
 
         public PlayersGenerator(int initialBalance)
-        { _initialBalance = initialBalance; }
+        {
+            _initialBalance = initialBalance;
+            _guiController = GUIController.GetInstance();
+        }
 
         public List<Player> Execute()
         {
@@ -17,7 +21,7 @@ namespace monopoly
             for (int i = 0; i < count; i++)
             {
                 players.Add(GetPlayer(i + 1));
-                GUIController.AddDrawable(players[i]);
+                _guiController.AddDrawable(players[i]);
             }
             return players;
         }

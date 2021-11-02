@@ -11,9 +11,11 @@ namespace monopoly
         private static int _currentPlayerIndex, _diceCount;
         private static Deck _chance, _communityChest;
         private Bitmap _image;
+        private static GUIController _guiController;
 
         public Board(List<Player> players, Dictionary<int, Tile> tiles, Deck chance, Deck communityChest, Bitmap image)
         {
+            _guiController = GUIController.GetInstance();
             _tiles = tiles; _players = players;
             _currentPlayerIndex = 0; _image = image;
             _chance = chance; _communityChest = communityChest;
@@ -59,7 +61,7 @@ namespace monopoly
             }
 
             JailManager.RemovePlayer(p);
-            GUIController.RemoveDrawable(p);
+            _guiController.RemoveDrawable(p);
             _players.Remove(p);
 
             if (_currentPlayerIndex == _players.Count) _currentPlayerIndex = 0;
@@ -75,7 +77,7 @@ namespace monopoly
         {
             Dice[] dice = new Dice[2];
             dice[0] = new Dice("d1", 610, 560); dice[1] = new Dice("d2", 660, 560);
-            foreach(IDrawable d in dice) GUIController.AddDrawable(d);
+            foreach(IDrawable d in dice) _guiController.AddDrawable(d);
             return dice;
         }
 

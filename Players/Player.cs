@@ -9,12 +9,13 @@ namespace monopoly
         private int _loc, _balance;
         private List<ICard> _cards;
         private Bitmap _image;
+        private GUIController _guiController;
 
         public Player(string name, int balance, Bitmap image)
         {
             _name = name; _balance = balance;
             _loc = 0; _cards = new();
-            _image = image;
+            _image = image; _guiController = GUIController.GetInstance();
         }
 
         public void AddCard(ICard card)
@@ -25,7 +26,7 @@ namespace monopoly
 
         public void Draw()
         {
-            int[] coords = GUIController.GetCoordsByTile(_loc);
+            int[] coords = _guiController.GetCoordsByTile(_loc);
             if (_image.Name.Contains('1')) { coords[1] -= 20; }
             else if (_image.Name.Contains('2')) { coords[1] -= 10; }
             else if (_image.Name.Contains('4')) { coords[1] += 10; }

@@ -3,10 +3,8 @@ using SplashKitSDK;
 
 /*
  * TODO:
- * SidebarController (Make Relevant Changes In CMDTransfer)
- *
- * TODO OPTIONAL:
- * Create File Purchasables (TileFactory, PurchasableCardGenerator)
+ * Sidebar -> Sound When Unable To Build
+ * Draw House/Hotel
  */
 
 namespace monopoly
@@ -26,12 +24,12 @@ namespace monopoly
             List<Player> players = playersGenerator.Execute();
 
             JailManager jailManager = new(players);
-
             Board board = new(players, tiles, chance, communityChest, new("board", "Resources\\Sprites\\Board.png"));
-            GUIController.AddDrawable(board);
-
             Sidebar sidebar = new(board);
-            GUIController.AddDrawable(sidebar);
+
+            GUIController guiController = GUIController.GetInstance();
+            guiController.AddDrawable(board);
+            guiController.AddDrawable(sidebar);
 
             new Window("Monopoly", 1000, 700);
             new Font("Roboto", "Resources\\Fonts\\Roboto-Regular.ttf");
@@ -39,7 +37,7 @@ namespace monopoly
             do
             {
                 SplashKit.ProcessEvents();
-                GUIController.Draw();
+                guiController.Draw();
                 if (SplashKit.MouseClicked(MouseButton.LeftButton)) sidebar.ClickHandler(SplashKit.MousePosition().X, SplashKit.MousePosition().Y);
                 SplashKit.RefreshScreen();
             } while (!SplashKit.WindowCloseRequested("Monopoly"));

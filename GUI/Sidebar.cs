@@ -7,9 +7,10 @@ namespace monopoly
         private static Board _board;
         private static int _state;
         private static ICard _currentCard;
+        private static GUIController _guiController;
 
         public Sidebar(Board board)
-        { _board = board; }
+        { _board = board; _guiController = GUIController.GetInstance(); }
 
         public void Draw()
         {
@@ -109,7 +110,7 @@ namespace monopoly
             new Button(Color.Yellow, "Cancel", 10, 190).Draw();
             if (SplashKit.MouseClicked(MouseButton.LeftButton))
             {
-                tile = GetTileByClick(SplashKit.MousePosition().X, SplashKit.MousePosition().Y) as PropertyTile;
+                tile = _guiController.GetTileByClick(SplashKit.MousePosition().X, SplashKit.MousePosition().Y) as PropertyTile;
                 if (tile == null) { System.Console.WriteLine("Invalid Selection"); /* Invalid Selection */ }
                 else
                 {
@@ -126,7 +127,7 @@ namespace monopoly
             new Button(Color.Yellow, "Cancel", 10, 190).Draw();
             if (SplashKit.MouseClicked(MouseButton.LeftButton))
             {
-                tile = GetTileByClick(SplashKit.MousePosition().X, SplashKit.MousePosition().Y) as PropertyTile;
+                tile = _guiController.GetTileByClick(SplashKit.MousePosition().X, SplashKit.MousePosition().Y) as PropertyTile;
                 if (tile == null) { /* Invalid Selection */ }
                 else
                 {
@@ -153,7 +154,7 @@ namespace monopoly
                 if (x >= 10 && x <= 160 && y >= 670 && y <= 695 && canQuit) { DrawEventsMenu(); }
                 else
                 {
-                    tile = GetTileByClick(x, y) as PurchasableTile;
+                    tile = _guiController.GetTileByClick(x, y) as PurchasableTile;
                     if (tile == null) { System.Console.WriteLine("Invalid"); /* Invalid Selection */ }
                     else
                     {
@@ -195,41 +196,6 @@ namespace monopoly
                     break;
                 default: break;
             }
-        }
-
-        private static Tile GetTileByClick(double x, double y)
-        {
-            if (y <= 88)
-            {
-                if (x <= 392) return Board.GetTile(20);
-                else if (x >= 912) return Board.GetTile(30);
-                else
-                {
-                    x -= 392; x = System.Math.Floor(x / 58); x += 21;
-                    return Board.GetTile((int)x);
-                }
-            }
-            else if (y >= 612)
-            {
-                if (x <= 392) return Board.GetTile(10);
-                else if (x >= 912) return Board.GetTile(0);
-                else
-                {
-                    x -= 392; x = System.Math.Floor(x / 58); x = 9 - x;
-                    return Board.GetTile((int)x);
-                }
-            }
-            else if (x >= 912)
-            {
-                y -= 88; y = System.Math.Floor(y / 58); y += 31;
-                return Board.GetTile((int)y);
-            }
-            else if (x <= 392)
-            {
-                y -= 88; y = System.Math.Floor(y / 58); y = 9 - y; y += 10;
-                return Board.GetTile((int)y);
-            }
-            return null;
         }
     }
 }
