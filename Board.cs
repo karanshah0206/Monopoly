@@ -28,9 +28,9 @@ namespace monopoly
 
         public static void NextPlayer()
         {
-            Sidebar.DrawEventsMenu();
             _currentPlayerIndex++;
             _currentPlayerIndex %= _players.Count;
+            Sidebar.DrawEventsMenu();
         }
 
         public static Player GetCurrentPlayer()
@@ -38,14 +38,26 @@ namespace monopoly
 
         public static void PlayerOut(Player p, Player nominee)
         {
-            foreach (ICard c in p.Cards)
+            if (nominee != null)
             {
-                nominee.Cards.Add(c);
-                if (c.GetType() == typeof(PropertyCard) || c.GetType() == typeof(StationCard) || c.GetType() == typeof(ServiceCard))
-                    CmdCardActions.GetTileByCard(c as PurchasableCard).Owner = nominee;
+                foreach (ICard c in p.Cards)
+                {
+                    nominee.Cards.Add(c);
+                    if (c.GetType() == typeof(PropertyCard) || c.GetType() == typeof(StationCard) || c.GetType() == typeof(ServiceCard))
+                        CmdCardActions.GetTileByCard(c as PurchasableCard).Owner = nominee;
+                }
+
+                CmdTransfer.MakePayment(p, p.Balance, nominee);
+            }
+            else
+            {
+                foreach (ICard c in p.Cards)
+                {
+                    if (c.GetType() == typeof(OpportunityCard)) CmdCardActions.ReturnCardToDeck(c as OpportunityCard);
+                    else CmdCardActions.GetTileByCard(c as PurchasableCard).Owner = null;
+                }
             }
 
-            CmdTransfer.MakePayment(p, p.Balance, nominee);
             JailManager.RemovePlayer(p);
             GUIController.RemoveDrawable(p);
             _players.Remove(p);
