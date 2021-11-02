@@ -8,15 +8,9 @@ namespace monopoly
         private static int _state;
         private static ICard _currentCard;
         private static GUIController _guiController;
-        private static SoundEffect _alertSound, _stepSound;
 
         public Sidebar(Board board)
-        {
-            _board = board;
-            _guiController = GUIController.GetInstance();
-            _alertSound = new("alert", "alert.mp3");
-            _stepSound = new("step", "step.mp3");
-        }
+        { _board = board; _guiController = GUIController.GetInstance(); }
 
         public void Draw()
         {
@@ -116,11 +110,11 @@ namespace monopoly
             if (SplashKit.MouseClicked(MouseButton.LeftButton))
             {
                 tile = _guiController.GetTileByClick(SplashKit.MousePosition().X, SplashKit.MousePosition().Y) as PropertyTile;
-                if (tile == null) { _alertSound.Play(); }
+                if (tile == null) { _guiController.PlaySound("alert"); }
                 else
                 {
                     if (CmdBuildables.BuildHouse(Board.GetCurrentPlayer(), tile)) Board.NextPlayer();
-                    else { _alertSound.Play(); }
+                    else { _guiController.PlaySound("alert"); }
                 }
             }
         }
@@ -133,11 +127,11 @@ namespace monopoly
             if (SplashKit.MouseClicked(MouseButton.LeftButton))
             {
                 tile = _guiController.GetTileByClick(SplashKit.MousePosition().X, SplashKit.MousePosition().Y) as PropertyTile;
-                if (tile == null) { _alertSound.Play(); }
+                if (tile == null) { _guiController.PlaySound("alert"); }
                 else
                 {
                     if (CmdBuildables.BuildHotel(Board.GetCurrentPlayer(), tile)) Board.NextPlayer();
-                    else { _alertSound.Play(); }
+                    else { _guiController.PlaySound("alert"); }
                 }
             }
         }
@@ -160,11 +154,11 @@ namespace monopoly
                 else
                 {
                     tile = _guiController.GetTileByClick(x, y) as PurchasableTile;
-                    if (tile == null) { _alertSound.Play(); }
+                    if (tile == null) { _guiController.PlaySound("alert"); }
                     else
                     {
                         if (CmdTransfer.SellProperty(Board.GetCurrentPlayer(), tile)) { /* Sold Successfully */ }
-                        else { _alertSound.Play(); }
+                        else { _guiController.PlaySound("alert"); }
                     }
                 }
             }
@@ -175,7 +169,7 @@ namespace monopoly
             switch (_state)
             {
                 case 0:
-                    if (x >= 10 && x <= 160 && y >= 190 && y <= 215) { _stepSound.Play(); CmdMove.MoveByCount(Board.GetCurrentPlayer(), _board.RollDice()); }
+                    if (x >= 10 && x <= 160 && y >= 190 && y <= 215) { _guiController.PlaySound("step"); CmdMove.MoveByCount(Board.GetCurrentPlayer(), _board.RollDice()); }
                     else if (x >= 10 && x <= 160 && y >= 230 && y <= 255) { DrawSellMenu(); }
                     else if (x >= 10 && x <= 160 && y >= 270 && y <= 295) { _state = 5; }
                     else if (x >= 10 && x <= 160 && y >= 310 && y <= 335) { _state = 6; }

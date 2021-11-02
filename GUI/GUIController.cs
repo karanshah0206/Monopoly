@@ -7,9 +7,15 @@ namespace monopoly
     {
         private static GUIController _guiController;
         private List<IDrawable> _drawables;
+        private SoundEffect _alertSound, _stepSound, _playerLost;
 
         private GUIController()
-        { _drawables = new(); }
+        {
+            _drawables = new();
+            _alertSound = new("alert", "alert.mp3");
+            _stepSound = new("step", "step.mp3");
+            _playerLost = new("lost", "lost.mp3");
+        }
 
         public static GUIController GetInstance()
         {
@@ -78,6 +84,16 @@ namespace monopoly
             else if (loc > 10 && loc < 20) SplashKit.FillRectangle(Color.LightCoral, x + 73, y + 45, 15, 10);
             else if (loc > 20 && loc < 30) SplashKit.FillRectangle(Color.LightCoral, x - 44, y + 68, 10, 15);
             else SplashKit.FillRectangle(Color.LightCoral, x - 73, y - 45, 15, 10);
+        }
+
+        public void PlaySound(string soundEffect)
+        {
+            switch(soundEffect)
+            {
+                case "lost": _playerLost.Play(); break;
+                case "alert": _alertSound.Play(); break;
+                case "step": _stepSound.Play(); break;
+            }
         }
     }
 }

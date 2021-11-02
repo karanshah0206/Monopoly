@@ -40,6 +40,7 @@ namespace monopoly
 
         public static void PlayerOut(Player p, Player nominee)
         {
+            _guiController.PlaySound("lost");
             if (nominee != null)
             {
                 foreach (ICard c in p.Cards)
