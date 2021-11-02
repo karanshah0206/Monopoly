@@ -39,8 +39,7 @@ namespace monopoly
             foreach (PropertyTile tile in tiles)
             {
                 remuneration += tile.GetBuildablesValuation();
-                tile.HouseCount = 0;
-                tile.HasHotel = false;
+                tile.HasHotel = false; tile.HouseCount = 0;
             }
 
             CmdTransfer.AddToAccount(p, remuneration);

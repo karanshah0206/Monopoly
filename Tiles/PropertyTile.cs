@@ -39,8 +39,12 @@ namespace monopoly
 
         public override void Draw()
         {
-            base.Draw();
-            if (HasHotel) _guiController.DrawHouse(_coords[0], _coords[1], Location);
+            if (Owner != null)
+            {
+                base.Draw();
+                if (_houseCount != 0) for (int i = 0; i < HouseCount; i++) _guiController.DrawHouse(_coords[0], _coords[1], Location, i);
+                if (HasHotel) _guiController.DrawHotel(_coords[0], _coords[1], Location);
+            }
         }
 
         public Color ColorGroup
@@ -49,7 +53,7 @@ namespace monopoly
         public int HouseCount
         {
             get { return _houseCount; }
-            set { if (_houseCount < 4) _houseCount = value; }
+            set { if (value <= 4) _houseCount = value; }
         }
 
         public bool HasHotel

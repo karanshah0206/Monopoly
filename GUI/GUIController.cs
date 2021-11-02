@@ -64,7 +64,15 @@ namespace monopoly
             else return Color.Brown;
         }
 
-        public void DrawHouse(int x, int y, int loc)
+        public void DrawHouse(int x, int y, int loc, int houseCount)
+        {
+            if (loc > 0 && loc < 10) SplashKit.FillRectangle(Color.BrightGreen, x + (11 * houseCount), y - 74, 10, 15);
+            else if (loc > 10 && loc < 20) SplashKit.FillRectangle(Color.BrightGreen, x + 73, y + (11 * houseCount), 15, 10);
+            else if (loc > 20 && loc < 30) SplashKit.FillRectangle(Color.BrightGreen, x - (11 * houseCount), y + 68, 10, 15);
+            else SplashKit.FillRectangle(Color.BrightGreen, x - 73, y - (11 * houseCount), 15, 10);
+        }
+
+        public void DrawHotel(int x, int y, int loc)
         {
             if (loc > 0 && loc < 10) SplashKit.FillRectangle(Color.LightCoral, x + 45, y - 74, 10, 15);
             else if (loc > 10 && loc < 20) SplashKit.FillRectangle(Color.LightCoral, x + 73, y + 45, 15, 10);

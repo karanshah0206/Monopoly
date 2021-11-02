@@ -4,7 +4,6 @@ using SplashKitSDK;
 /*
  * TODO:
  * Sidebar -> Sound When Unable To Build
- * Draw House/Hotel
  */
 
 namespace monopoly
