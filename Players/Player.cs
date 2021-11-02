@@ -8,7 +8,7 @@ namespace monopoly
         private string _name;
         private int _loc, _balance;
         private List<ICard> _cards;
-        private Bitmap _image;
+        private Bitmap _image; private Color _clr;
         private GUIController _guiController;
 
         public Player(string name, int balance, Bitmap image)
@@ -16,6 +16,7 @@ namespace monopoly
             _name = name; _balance = balance;
             _loc = 0; _cards = new();
             _image = image; _guiController = GUIController.GetInstance();
+            _clr = _guiController.GetPlayerColor(_image.Name);
         }
 
         public void AddCard(ICard card)
@@ -51,6 +52,9 @@ namespace monopoly
             get { return _balance; }
             set { _balance = value; }
         }
+
+        public Color Color
+        { get { return _clr; } }
 
         public List<ICard> Cards
         { get { return _cards; } }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using SplashKitSDK;
+using System.Collections.Generic;
 
 namespace monopoly
 {
@@ -49,6 +50,18 @@ namespace monopoly
             else if (x >= 912) return Board.GetTile((int)(System.Math.Floor((y - 88) / 58) + 31));
             else if (x <= 392 && x >= 300) return Board.GetTile((int)(19 - System.Math.Floor((y - 88) / 58)));
             return null;
+        }
+
+        public Color GetPlayerColor(string name)
+        {
+            if (name.Contains('1')) return Color.Red;
+            else if (name.Contains('2')) return Color.Blue;
+            else if (name.Contains('3')) return Color.Green;
+            else if (name.Contains('4')) return Color.Yellow;
+            else if (name.Contains('5')) return Color.DarkGray;
+            else if (name.Contains('6')) return Color.White;
+            else if (name.Contains('7')) return Color.Orange;
+            else return Color.SandyBrown;
         }
     }
 }
