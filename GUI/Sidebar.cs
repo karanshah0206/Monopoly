@@ -52,7 +52,7 @@ namespace monopoly
         public static void DrawEventsMenu()
         {
             if (JailManager.GetStatus(Board.GetCurrentPlayer()) != 0) _state = 4;
-            if (Board.GetCurrentPlayer().Balance < 0) _state = 7;
+            else if (Board.GetCurrentPlayer().Balance < 0) _state = 7;
             else
             {
                 SplashKit.DrawText("Pick an event:", Color.Black, "Roboto", 20, 5, 160);
@@ -94,6 +94,7 @@ namespace monopoly
             {
                 new Button(Color.Yellow, "Get Out Now ($200)", 10, 190).Draw();
                 new Button(Color.Yellow, "Skip Turn", 10, 230).Draw();
+                _state = 4;
             }
         }
 
@@ -111,11 +112,11 @@ namespace monopoly
             if (SplashKit.MouseClicked(MouseButton.LeftButton))
             {
                 tile = _guiController.GetTileByClick(SplashKit.MousePosition().X, SplashKit.MousePosition().Y) as PropertyTile;
-                if (tile == null) { System.Console.WriteLine("Invalid Selection"); /* Invalid Selection */ }
+                if (tile == null) { /* Invalid Selection */ }
                 else
                 {
                     if (CmdBuildables.BuildHouse(Board.GetCurrentPlayer(), tile)) Board.NextPlayer();
-                    else { System.Console.WriteLine("Cannot Build"); /* Cannot Build */ }
+                    else { /* Cannot Build */ }
                 }
             }
         }
@@ -155,11 +156,11 @@ namespace monopoly
                 else
                 {
                     tile = _guiController.GetTileByClick(x, y) as PurchasableTile;
-                    if (tile == null) { System.Console.WriteLine("Invalid"); /* Invalid Selection */ }
+                    if (tile == null) { /* Invalid Selection */ }
                     else
                     {
-                        if (CmdTransfer.SellProperty(Board.GetCurrentPlayer(), tile)) { System.Console.WriteLine("Sold"); /* Sold Successfully */ }
-                        else { System.Console.WriteLine("Could Not Sell");  /* Cannot Sell */ }
+                        if (CmdTransfer.SellProperty(Board.GetCurrentPlayer(), tile)) { /* Sold Successfully */ }
+                        else { /* Cannot Sell */ }
                     }
                 }
             }
