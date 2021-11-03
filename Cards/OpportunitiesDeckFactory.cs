@@ -9,12 +9,12 @@ namespace monopoly
         /* Returns a deck based on provided string parameter ("Chance"/"Community Chest"). */
         public Deck CreateOpportunitiesDeck(string deckType)
         {
-            switch (deckType)
+            return deckType switch
             {
-                case "Chance": return CreateChanceDeck();
-                case "Community Chest": return CreateCommunityChestDeck();
-                default: return null;
-            }
+                "Chance" => CreateChanceDeck(),
+                "Community Chest" => CreateCommunityChestDeck(),
+                _ => null,
+            };
         }
 
         /* Creates a deck of randomly ordered community chest cards.
@@ -22,7 +22,7 @@ namespace monopoly
         private Deck CreateCommunityChestDeck()
         {
             List<OpportunityCard> cardsList = new();
-            StreamReader chance = new StreamReader("Resources\\Data\\community chest.txt");
+            StreamReader chance = new("Resources\\Data\\community chest.txt");
             string ln;
 
             while ((ln = chance.ReadLine()) != null)
@@ -39,7 +39,7 @@ namespace monopoly
         private Deck CreateChanceDeck()
         {
             List<OpportunityCard> cardsList = new();
-            StreamReader chance = new StreamReader("Resources\\Data\\chance.txt");
+            StreamReader chance = new("Resources\\Data\\chance.txt");
             string ln;
 
             while ((ln = chance.ReadLine()) != null)

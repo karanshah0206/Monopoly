@@ -3,7 +3,7 @@ using SplashKitSDK;
 
 namespace monopoly
 {
-    public class CmdCardActions
+    public static class CmdCardActions
     {
         /* Adds a card to player's card list. */
         public static void AddCardToPlayer(Player p, ICard c)
@@ -49,11 +49,11 @@ namespace monopoly
         }
 
         /* Draw a card from the chance deck. */
-        public static void Chance(Player p)
+        public static void Chance()
         { Sidebar.DrawOpportunity(Board.ChanceDeck.GetTopCard()); }
 
         /* Draw a card from the community chest deck. */
-        public static void CommunityChest(Player p)
+        public static void CommunityChest()
         { Sidebar.DrawOpportunity(Board.CommunityChestDeck.GetTopCard()); }
 
         /* Return a card to it's corresponding deck (chance/community chest). */

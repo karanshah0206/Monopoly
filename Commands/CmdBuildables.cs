@@ -2,7 +2,7 @@
 
 namespace monopoly
 {
-    public class CmdBuildables
+    public static class CmdBuildables
     {
         /* Tries building a house on a property tile.
          * Returns true if successful, else returns false. */

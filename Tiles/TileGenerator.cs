@@ -8,8 +8,8 @@ namespace monopoly
          * Add purchasable tiles to drawables list. */
         public Dictionary<int, Tile> GenerateTiles()
         {
-            TileFactory tileFactory = new TileFactory();
-            Dictionary<int, Tile> tiles = new Dictionary<int, Tile>();
+            TileFactory tileFactory = new();
+            Dictionary<int, Tile> tiles = new();
             GUIController guiController = GUIController.GetInstance();
 
             foreach (var tile in tileFactory.CreateTiles("Opportunity")) tiles.Add(tile.Key, tile.Value);

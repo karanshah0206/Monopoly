@@ -11,22 +11,22 @@ namespace monopoly
          * Tile value for tile object reference. */
         public Dictionary<int, Tile> CreateTiles(string tileType, List<PurchasableCard> cardsList = null)
         {
-            switch (tileType)
+            return tileType switch
             {
-                case "Opportunity": return CreateOpportunity();
-                case "Go": return CreateGo();
-                case "GoToJail": return CreateGoToJail();
-                case "Tax": return CreateTax();
-                case "Visiting": return CreateVisiting();
-                case "Purchasable": return CreatePurchasable(cardsList);
-            }
-            return null;
+                "Opportunity" => CreateOpportunity(),
+                "Go" => CreateGo(),
+                "GoToJail" => CreateGoToJail(),
+                "Tax" => CreateTax(),
+                "Visiting" => CreateVisiting(),
+                "Purchasable" => CreatePurchasable(cardsList),
+                _ => null,
+            };
         }
 
         /* Create and return Opportunity Tiles as a dictionary (key: position, value: Tile) */
         private Dictionary<int, Tile> CreateOpportunity()
         {
-            Dictionary<int, Tile> tiles = new Dictionary<int, Tile>();
+            Dictionary<int, Tile> tiles = new();
 
             tiles.Add(2, new OpportunityTile(2, "COMMUNITY CHEST"));
             tiles.Add(7, new OpportunityTile(7, "CHANCE"));
@@ -41,7 +41,7 @@ namespace monopoly
         /* Create and return Go Tile as a dictionary (key: position, value: Tile) */
         private Dictionary<int, Tile> CreateGo()
         {
-            Dictionary<int, Tile> tiles = new Dictionary<int, Tile>();
+            Dictionary<int, Tile> tiles = new();
             tiles.Add(0, new GoTile(200, 0));
             return tiles;
         }
@@ -49,7 +49,7 @@ namespace monopoly
         /* Create and return Go To Jail Tile as a dictionary (key: position, value: Tile) */
         private Dictionary<int, Tile> CreateGoToJail()
         {
-            Dictionary<int, Tile> tiles = new Dictionary<int, Tile>();
+            Dictionary<int, Tile> tiles = new();
             tiles.Add(30, new GoToJailTile(30));
             return tiles;
         }
@@ -57,7 +57,7 @@ namespace monopoly
         /* Create and return Tax Tiles as a dictionary (key: position, value: Tile) */
         private Dictionary<int, Tile> CreateTax()
         {
-            Dictionary<int, Tile> tiles = new Dictionary<int, Tile>();
+            Dictionary<int, Tile> tiles = new();
 
             tiles.Add(4, new TaxTile(200, 4, "INCOME TAX"));
             tiles.Add(38, new TaxTile(100, 38, "SUPER TAX"));
@@ -68,7 +68,7 @@ namespace monopoly
         /* Create and return Visiting Tiles as a dictionary (key: position, value: Tile) */
         private Dictionary<int, Tile> CreateVisiting()
         {
-            Dictionary<int, Tile> tiles = new Dictionary<int, Tile>();
+            Dictionary<int, Tile> tiles = new();
 
             tiles.Add(10, new VisitingTile(10, "JUST VISITING"));
             tiles.Add(20, new VisitingTile(20, "FREE PARKING"));
@@ -80,7 +80,7 @@ namespace monopoly
          * Purchasable Tiles include property, service, and station tiles. */
         private Dictionary<int, Tile> CreatePurchasable(List<PurchasableCard> cardsList)
         {
-            Dictionary<int, Tile> tiles = new Dictionary<int, Tile>();
+            Dictionary<int, Tile> tiles = new();
 
             tiles.Add(1, new PropertyTile((PropertyCard)GetCardByTitle("OLD KENT ROAD", cardsList), Color.Brown, 60, 30, 1, "OLD KENT ROAD"));
             tiles.Add(3, new PropertyTile((PropertyCard)GetCardByTitle("WHITECHAPEL ROAD", cardsList), Color.Brown, 60, 30, 3, "WHITECHAPEL ROAD"));
