@@ -5,6 +5,7 @@
         public ServiceTile(ServiceCard card, int price, int resaleValue, int loc, string name) : base (card, price, resaleValue, loc, name)
         { }
 
+        /* Charges rent based on dice value and number of services owned. */
         public override void ChargeRent(Player p)
         {
             ServiceCard c = (ServiceCard)_card;

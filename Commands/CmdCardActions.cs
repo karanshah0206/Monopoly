@@ -5,9 +5,11 @@ namespace monopoly
 {
     public class CmdCardActions
     {
+        /* Adds a card to player's card list. */
         public static void AddCardToPlayer(Player p, ICard c)
         { p.AddCard(c); }
 
+        /* Returns corresponding tile for provided puchasable card (null if invalid). */
         public static PurchasableTile GetTileByCard(PurchasableCard c)
         {
             for (int i = 0; i < 40; i++)
@@ -16,12 +18,14 @@ namespace monopoly
             return null;
         }
 
+        /* Returns jail exemption card if owned by player, else returns null. */
         public static OpportunityCard CheckJailBreakCard(Player p)
         {
             foreach (ICard c in p.Cards) if (c.GetType() == typeof(OpportunityCard)) return c as OpportunityCard;
             return null;
         }
 
+        /* Checks if the player is sole owner of properties under specified color group. */
         public static bool CheckColorGroupCardsOwned(Player p, Color clr)
         {
             int count = 0;
@@ -36,6 +40,7 @@ namespace monopoly
             return false;
         }
 
+        /* Returns int count indicating # of cards in player's list of a specified type. */
         public static int CountCardsOfType(Player p, Type type)
         {
             int count = 0;
@@ -43,12 +48,15 @@ namespace monopoly
             return count;
         }
 
+        /* Draw a card from the chance deck. */
         public static void Chance(Player p)
         { Sidebar.DrawOpportunity(Board.ChanceDeck.GetTopCard()); }
 
+        /* Draw a card from the community chest deck. */
         public static void CommunityChest(Player p)
         { Sidebar.DrawOpportunity(Board.CommunityChestDeck.GetTopCard()); }
 
+        /* Return a card to it's corresponding deck (chance/community chest). */
         public static void ReturnCardToDeck(OpportunityCard c)
         {
             if (c.Title == "CHANCE") Board.ChanceDeck.SendCardToBottom(c);

@@ -22,12 +22,14 @@ namespace monopoly
             _dice = GenerateDice();
         }
 
+        /* Returns the Tile at a specific location. */
         public static Tile GetTile(int loc)
         {
             foreach (int key in _tiles.Keys) if (key == loc) return _tiles[key];
             return null;
         }
 
+        /* Ends the turn of current player and starts next player's turn. */
         public static void NextPlayer()
         {
             _currentPlayerIndex++;
@@ -35,9 +37,11 @@ namespace monopoly
             Sidebar.DrawEventsMenu();
         }
 
+        /* Returns object refernce to the player whose turn is active. */
         public static Player GetCurrentPlayer()
         { return _players[_currentPlayerIndex]; }
 
+        /* Sells player's assets and removes them from the game. */
         public static void PlayerOut(Player p, Player nominee)
         {
             _guiController.PlaySound("lost");
@@ -68,12 +72,15 @@ namespace monopoly
             if (_currentPlayerIndex == _players.Count) _currentPlayerIndex = 0;
         }
 
+        /* Roll the dice and return the vaule. */
         public int RollDice()
         { return _diceCount = _dice[0].Roll() + _dice[1].Roll(); }
 
+        /* Current sum of the face values on the dice. */
         public static int DiceCount()
         { return _diceCount; }
 
+        /* Generate a pair of dice and add them to the GUI Controller's drawables list. */
         private Dice[] GenerateDice()
         {
             Dice[] dice = new Dice[2];
@@ -82,6 +89,7 @@ namespace monopoly
             return dice;
         }
 
+        /* Draw the board on the GUI. */
         public void Draw()
         { SplashKit.DrawBitmap(_image, 300, 0); }
 

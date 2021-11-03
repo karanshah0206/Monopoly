@@ -9,11 +9,9 @@ namespace monopoly
         private int _x, _y;
 
         public Button(Color clr, string text, int x, int y)
-        {
-            _clr = clr; _text = text;
-            _x = x; _y = y;
-        }
+        { _clr = clr; _text = text; _x = x; _y = y; }
 
+        /* Draw the button. */
         public void Draw()
         {
             SplashKit.FillRectangle(_clr, _x, _y, 150, 25);

@@ -6,6 +6,7 @@ namespace monopoly
 {
     class OpportunitiesDeckFactory
     {
+        /* Returns a deck based on provided string parameter ("Chance"/"Community Chest"). */
         public Deck CreateOpportunitiesDeck(string deckType)
         {
             switch (deckType)
@@ -16,6 +17,8 @@ namespace monopoly
             }
         }
 
+        /* Creates a deck of randomly ordered community chest cards.
+         * Data sourced from "community chest.txt" in Resources\Data directory. */
         private Deck CreateCommunityChestDeck()
         {
             List<OpportunityCard> cardsList = new();
@@ -31,6 +34,8 @@ namespace monopoly
             return new(Shuffle(cardsList));
         }
 
+        /* Creates a deck of randomly ordered chance cards.
+         * Data sourced from "chance.txt" in Resources\Data directory. */
         private Deck CreateChanceDeck()
         {
             List<OpportunityCard> cardsList = new();
@@ -46,7 +51,7 @@ namespace monopoly
             return new(Shuffle(cardsList));
         }
 
-        /* Fischer-Yates Shuffle */
+        /* Fischer-Yates Shuffle used for randomizing order of cards in deck. */
         private List<OpportunityCard> Shuffle(List<OpportunityCard> list)
         {
             Random random = new();

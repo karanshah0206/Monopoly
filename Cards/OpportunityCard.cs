@@ -9,9 +9,11 @@ namespace monopoly
         public OpportunityCard(string title, string desc, string command)
         { _title = title; _desc = desc; _cmdString = command; }
 
+        /* Perform action specified by the card. */
         public void Execute(Player p)
         { CommandInterpreter.Execute(p, this); }
 
+        /* Draw the card. */
         public void Draw()
         {
             SplashKit.FillRectangle(Color.White, 10, 190, 240, 300);

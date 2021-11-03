@@ -10,6 +10,8 @@ namespace monopoly
         public PropertyCard(int[] rentList, int buildableCost, string title, Color clrGroup) : base (rentList, title)
         { _buildableCost = buildableCost; _clrGroup = clrGroup; }
 
+        /* Returns integer rent based for the card's corresponding property
+         * based on the number of buildables on the property. */
         public int CalculateRent(int houseCount, bool hasHotel)
         {
             int total = houseCount;
@@ -17,6 +19,7 @@ namespace monopoly
             return _rentList[total];
         }
 
+        /* Draw the card. */
         public override void Draw()
         {
             base.Draw();

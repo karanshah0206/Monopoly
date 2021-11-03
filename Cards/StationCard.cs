@@ -7,9 +7,11 @@ namespace monopoly
         public StationCard(int[] rentList, string title) : base (rentList, title)
         { }
 
+        /* Returns integer rent based on number of stations owned. */
         public int CalculateRent(int stationCount)
         { return _rentList[stationCount - 1]; }
 
+        /* Draw the card. */
         public override void Draw()
         {
             base.Draw();

@@ -19,12 +19,15 @@ namespace monopoly
             _clr = _guiController.GetPlayerColor(_image.Name);
         }
 
+        /* Add a card to player's list of cards. */
         public void AddCard(ICard card)
         { _cards.Add(card); }
 
+        /* Remove a card from the player's list of cards. */
         public void RemoveCard(ICard card)
         { _cards.Remove(card); }
 
+        /* Draw player on gameboard. */
         public void Draw()
         {
             int[] coords = _guiController.GetCoordsByTile(_loc);

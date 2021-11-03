@@ -10,9 +10,7 @@ namespace monopoly
         public PurchasableCard(int[] rentList, string title)
         { _rentList = rentList; _title = title; }
 
-        public string Title
-        { get { return _title; } }
-
+        /* Draw the card. */
         public virtual void Draw()
         {
             int price = CmdCardActions.GetTileByCard(this).Price;
@@ -23,5 +21,8 @@ namespace monopoly
             for (int i = 0; i < _rentList.Length; i++) SplashKit.DrawText("$"+_rentList[i], Color.Black, "Roboto", 12, 200, 230 + i * 35);
             SplashKit.DrawText("Price: $" + price + " | Resale: $" + resale, Color.Black, "Roboto", 12, 15, 470);
         }
+
+        public string Title
+        { get { return _title; } }
     }
 }

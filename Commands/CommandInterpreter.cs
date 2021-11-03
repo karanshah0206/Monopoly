@@ -2,6 +2,8 @@
 {
     public static class CommandInterpreter
     {
+        /* Delegates command string to specific command processor based on first word.
+         * First words can include: "move", "pay", "earn", and "keep". */
         public static void Execute(Player p, OpportunityCard c)
         {
             string[] cmdString = c.Command.Split(" ");
@@ -18,6 +20,7 @@
             }
         }
 
+        /* Moves the player by count or to location based on the command string. */
         private static void Move(Player p, string[] cmdString)
         {
             if (cmdString[1] == "to")
@@ -28,6 +31,7 @@
             else if (cmdString[1] == "by") CmdMove.MoveByCount(p, int.Parse(cmdString[2]));
         }
 
+        /* Makes a payment or remunerates payer based on command string. */
         private static void Transaction(Player p, string[] cmdString)
         {
             if (cmdString[0] == "earn") CmdTransfer.AddToAccount(p, int.Parse(cmdString[1]));
@@ -43,6 +47,7 @@
             }
         }
 
+        /* Stores the card into player's card list. */
         private static void Keep(Player p, OpportunityCard c)
         { CmdCardActions.AddCardToPlayer(p, c); }
     }

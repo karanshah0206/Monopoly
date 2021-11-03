@@ -9,9 +9,11 @@ namespace monopoly
         public Deck(List<OpportunityCard> cards)
         { foreach (OpportunityCard card in cards) _deck.Push(card); }
 
+        /* Removes topmost card from deck and returns. */
         public OpportunityCard GetTopCard()
         { return _deck.Pop(); }
 
+        /* Adds a card to bottom of the stack. */
         public void SendCardToBottom(OpportunityCard card)
         {
             Stack<OpportunityCard> temp = new();

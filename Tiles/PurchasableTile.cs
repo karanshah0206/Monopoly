@@ -18,6 +18,9 @@ namespace monopoly
             SetCoordinates();
         }
 
+        /* Executes specific actions when player lands on property.
+         * If property owned, charge rent.
+         * Else offer purchase via sidebar. */
         public override void Execute(Player p)
         {
             if (_owner == null) { Sidebar.DrawPurchasable(0, _card); }
@@ -25,11 +28,13 @@ namespace monopoly
             else { Sidebar.DrawPurchasable(1, _card); }
         }
 
+        /* Returns the resaleVale of the tile. */
         public virtual int GetValuation()
         { return _resaleValue; }
 
         public abstract void ChargeRent(Player p);
 
+        /* Draws owner indicator on tile if not null. */
         public virtual void Draw()
         {
             if (_owner != null)
@@ -39,6 +44,7 @@ namespace monopoly
             }
         }
 
+        /* Calculates coordinates for drawing items on tile based on location. */
         private void SetCoordinates()
         {
             _coords = _guiController.GetCoordsByTile(Location);

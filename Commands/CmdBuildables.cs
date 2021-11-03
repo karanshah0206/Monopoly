@@ -4,6 +4,8 @@ namespace monopoly
 {
     public class CmdBuildables
     {
+        /* Tries building a house on a property tile.
+         * Returns true if successful, else returns false. */
         public static bool BuildHouse(Player p, PropertyTile t)
         {
             if (CmdCardActions.CheckColorGroupCardsOwned(p, t.ColorGroup) && t.HouseCount < 4)
@@ -15,6 +17,8 @@ namespace monopoly
             return false;
         }
 
+        /* Tries building a hotel on a property tile.
+         * Returns true if successful, else returns false. */
         public static bool BuildHotel(Player p, PropertyTile t)
         {
             if (t.Owner == p && t.HouseCount == 4 && !t.HasHotel)
@@ -26,6 +30,8 @@ namespace monopoly
             return false;
         }
 
+        /* Sells all buildings on a property.
+         * Credits buildables' resale valuation to seller's account. */
         public static void SellBuildables(Player p, PropertyTile t)
         {
             int remuneration = 0;
@@ -45,6 +51,7 @@ namespace monopoly
             CmdTransfer.AddToAccount(p, remuneration);
         }
 
+        /* Returns integer count specifying number of houses owned by a player. */
         public static int GetPlayerHouseCount(Player p)
         {
             int count = 0;
@@ -54,6 +61,7 @@ namespace monopoly
             return count;
         }
 
+        /* Returns integer count specifying number of hotels owned by a player. */
         public static int GetPlayerHotelCount(Player p)
         {
             int count = 0;

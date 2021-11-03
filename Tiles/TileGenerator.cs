@@ -4,6 +4,8 @@ namespace monopoly
 {
     public class TileGenerator
     {
+        /* Use Tile Factory too generate all 40 tiles on the gameboard.
+         * Add purchasable tiles to drawables list. */
         public Dictionary<int, Tile> GenerateTiles()
         {
             TileFactory tileFactory = new TileFactory();

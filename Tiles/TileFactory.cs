@@ -5,6 +5,10 @@ namespace monopoly
 {
     public class TileFactory
     {
+        /* Returns created tiles as a dictionary.
+         * Uses parameter string tileType to determine type of tiles to produce.
+         * Integet key indicating position of tile on board.
+         * Tile value for tile object reference. */
         public Dictionary<int, Tile> CreateTiles(string tileType, List<PurchasableCard> cardsList = null)
         {
             switch (tileType)
@@ -19,6 +23,7 @@ namespace monopoly
             return null;
         }
 
+        /* Create and return Opportunity Tiles as a dictionary (key: position, value: Tile) */
         private Dictionary<int, Tile> CreateOpportunity()
         {
             Dictionary<int, Tile> tiles = new Dictionary<int, Tile>();
@@ -33,6 +38,7 @@ namespace monopoly
             return tiles;
         }
 
+        /* Create and return Go Tile as a dictionary (key: position, value: Tile) */
         private Dictionary<int, Tile> CreateGo()
         {
             Dictionary<int, Tile> tiles = new Dictionary<int, Tile>();
@@ -40,6 +46,7 @@ namespace monopoly
             return tiles;
         }
 
+        /* Create and return Go To Jail Tile as a dictionary (key: position, value: Tile) */
         private Dictionary<int, Tile> CreateGoToJail()
         {
             Dictionary<int, Tile> tiles = new Dictionary<int, Tile>();
@@ -47,6 +54,7 @@ namespace monopoly
             return tiles;
         }
 
+        /* Create and return Tax Tiles as a dictionary (key: position, value: Tile) */
         private Dictionary<int, Tile> CreateTax()
         {
             Dictionary<int, Tile> tiles = new Dictionary<int, Tile>();
@@ -57,6 +65,7 @@ namespace monopoly
             return tiles;
         }
 
+        /* Create and return Visiting Tiles as a dictionary (key: position, value: Tile) */
         private Dictionary<int, Tile> CreateVisiting()
         {
             Dictionary<int, Tile> tiles = new Dictionary<int, Tile>();
@@ -67,6 +76,8 @@ namespace monopoly
             return tiles;
         }
 
+        /* Create and return Purchasable Tiles as a dictionary (key: position, value: Tile).
+         * Purchasable Tiles include property, service, and station tiles. */
         private Dictionary<int, Tile> CreatePurchasable(List<PurchasableCard> cardsList)
         {
             Dictionary<int, Tile> tiles = new Dictionary<int, Tile>();
@@ -103,6 +114,7 @@ namespace monopoly
             return tiles;
         }
 
+        /* Gets corresponding card for tile by comparing titles. */
         private PurchasableCard GetCardByTitle(string title, List<PurchasableCard> cardsList)
         {
             foreach (PurchasableCard c in cardsList) if (c.Title == title) return c;

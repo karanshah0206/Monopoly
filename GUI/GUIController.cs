@@ -17,6 +17,8 @@ namespace monopoly
             _playerLost = new("lost", "lost.mp3");
         }
 
+        /* Returns instance of singleton GUIController.
+         * If no instance exists, creates a new instance. */
         public static GUIController GetInstance()
         {
             if (_guiController == null)
@@ -24,15 +26,20 @@ namespace monopoly
             return _guiController;
         }
 
+        /* Add a drawable item to the drawables list. */
         public void AddDrawable(IDrawable drawable)
         { if (!_drawables.Contains(drawable)) _drawables.Add(drawable); }
 
+        /* Remove an item from the drawables list. */
         public void RemoveDrawable(IDrawable drawable)
         { if (_drawables.Contains(drawable)) _drawables.Remove(drawable); }
         
+        /* Draw each item in the drawables list.
+         * Priority to items added later to the list. */
         public void Draw()
         { for (int i = _drawables.Count - 1; i >= 0; i--) _drawables[i].Draw(); }
 
+        /* Returns coordinates for a tile on the gameboard. */
         public int[] GetCoordsByTile(int loc)
         {
             int[] coords = { 0, 0 };
@@ -43,6 +50,7 @@ namespace monopoly
             return coords;
         }
 
+        /* Returns Tile based on mouse click on the gameboard (null if invalid). */
         public Tile GetTileByClick(double x, double y)
         {
             if (y <= 88)
@@ -58,6 +66,7 @@ namespace monopoly
             return null;
         }
 
+        /* Determines a player's color based on their sequential index. */
         public Color GetPlayerColor(string name)
         {
             if (name.Contains('1')) return Color.Red;
@@ -70,6 +79,8 @@ namespace monopoly
             else return Color.Brown;
         }
 
+        /* Draws a house on a tile.
+         * Manages coordinates based on the # of house on the tile. */
         public void DrawHouse(int x, int y, int loc, int houseCount)
         {
             if (loc > 0 && loc < 10) SplashKit.FillRectangle(Color.BrightGreen, x + (11 * houseCount), y - 74, 10, 15);
@@ -78,6 +89,7 @@ namespace monopoly
             else SplashKit.FillRectangle(Color.BrightGreen, x - 73, y - (11 * houseCount), 15, 10);
         }
 
+        /* Draws a hotel on the tile. */
         public void DrawHotel(int x, int y, int loc)
         {
             if (loc > 0 && loc < 10) SplashKit.FillRectangle(Color.LightCoral, x + 45, y - 74, 10, 15);
@@ -86,6 +98,7 @@ namespace monopoly
             else SplashKit.FillRectangle(Color.LightCoral, x - 73, y - 45, 15, 10);
         }
 
+        /* Plays a sound effect based on the parameter soundEffect (lost/alert/step). */
         public void PlaySound(string soundEffect)
         {
             switch(soundEffect)

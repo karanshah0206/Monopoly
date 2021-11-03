@@ -5,6 +5,8 @@ namespace monopoly
 {
     class PurchasableCardGenerator
     {
+        /* Returns a list of purchasable cards.
+         * Purchasable cards include property, station, and service cards. */
         public List<PurchasableCard> CreateCards()
         {
             List<PurchasableCard> cardsList = new();
@@ -14,6 +16,7 @@ namespace monopoly
             return cardsList;
         }
 
+        /* Generates all property cards in order and returns list. */
         private List<PropertyCard> PropertyCards()
         {
             List<PropertyCard> cardsList = new();
@@ -42,6 +45,7 @@ namespace monopoly
             return cardsList;
         }
 
+        /* Generates all station cards in order and returns list. */
         private List<StationCard> StationCards()
         {
             List<StationCard> cardsList = new();
@@ -53,6 +57,7 @@ namespace monopoly
             return cardsList;
         }
 
+        /* Generates all service cards in order and returns list. */
         private List<ServiceCard> ServiceCards()
         {
             List<ServiceCard> cardsList = new();

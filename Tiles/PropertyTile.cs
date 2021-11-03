@@ -14,6 +14,7 @@ namespace monopoly
             _houseCount = 0; _hasHotel = false;
         }
 
+        /* Charges rent if non-owner player lands on the tile. */
         public override void ChargeRent(Player p)
         {
             PropertyCard c = (PropertyCard)_card;
@@ -21,6 +22,7 @@ namespace monopoly
             Board.NextPlayer();
         }
 
+        /* Returns the valuation of buildables constructed on the property. */
         public int GetBuildablesValuation()
         {
             int valuation = 0;
@@ -29,6 +31,7 @@ namespace monopoly
             return valuation;
         }
 
+        /* Returns the valuation of tile (resaleValue + buildablesValuation) */
         public override int GetValuation()
         {
             int valuation = 0;
@@ -37,6 +40,7 @@ namespace monopoly
             return valuation;
         }
 
+        /* Draw Tile's Owner Indication and Buildables */
         public override void Draw()
         {
             if (Owner != null)

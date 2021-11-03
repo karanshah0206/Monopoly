@@ -12,6 +12,8 @@ namespace monopoly
         public Sidebar(Board board)
         { _board = board; _guiController = GUIController.GetInstance(); }
 
+        /* Draws the sidebar.
+         * Based on current state of sidebar, dynamically changes menu options. */
         public void Draw()
         {
             SplashKit.FillRectangle(Color.LightGray, 0, 0, 300, 700);
@@ -30,6 +32,7 @@ namespace monopoly
             }
         }
 
+        /* Draws a list of players with their names, color, and jail sentence on sidebar. */
         private void DrawPlayersList()
         {
             SplashKit.DrawText("Players:", Color.Black, "Roboto", 15, 5, 10);
@@ -47,6 +50,7 @@ namespace monopoly
             }
         }
 
+        /* Draws menu options: Roll Dice, Sell Property, Build House, Build Hotel. */
         public static void DrawEventsMenu()
         {
             if (JailManager.GetStatus(Board.GetCurrentPlayer()) != 0) _state = 4;
@@ -62,9 +66,12 @@ namespace monopoly
             }
         }
 
+        /* Specifies a card to be drawn and sets state to draw opportunity menu. */
         public static void DrawOpportunity(ICard card)
         { _currentCard = card; _state = 1; }
 
+        /* Specified a card to be drawn. If property is owned,
+         * sets state to draw pay rent menu. Else draws purchase menu.*/
         public static void DrawPurchasable(int type, ICard card)
         {
             _currentCard = card;
@@ -72,12 +79,14 @@ namespace monopoly
             else if (type == 1) _state = 3;
         }
 
+        /* Draws menu options: Execute. */
         private void DrawOpportunityMenu()
         {
             _currentCard.Draw();
             new Button(Color.Yellow, "Execute", 10, 500).Draw();
         }
 
+        /* Draws menu options: Purchase Property, End Turn. */
         private void DrawPurchaseMenu()
         {
             _currentCard.Draw();
@@ -85,6 +94,7 @@ namespace monopoly
             new Button(Color.Yellow, "End Turn", 10, 540).Draw();
         }
 
+        /* Draws menu options: Get Out Now, Skip Turn. */
         private void DrawJailMenu()
         {
             if (JailManager.GetStatus(Board.GetCurrentPlayer()) == 0) _state = 0;
@@ -96,12 +106,16 @@ namespace monopoly
             }
         }
 
+        /* Draws menu options: Pay Rent. */
         private void DrawRentMenu()
         {
             _currentCard.Draw();
             new Button(Color.Yellow, "Pay Rent", 10, 500).Draw();
         }
 
+        /* Draws build house menu. Player must select a property on which to build house.
+         * Cancel button provided to end action.
+         * If invalid properety selected, alert sound effect */
         public void DrawHouseMenu()
         {
             PropertyTile tile;
@@ -118,7 +132,9 @@ namespace monopoly
                 }
             }
         }
-
+        /* Draws build hotel menu. Player must select a property on which to build hotel.
+         * Cancel button provided to end action.
+         * If invalid properety selected, alert sound effect */
         public void DrawHotelMenu()
         {
             PropertyTile tile;
@@ -136,6 +152,9 @@ namespace monopoly
             }
         }
 
+        /* Draws sell properties menu. Player must select a property to sell.
+         * Done button provided to end action (not visible unless balance is at least $0).
+         * If invalid properety selected, alert sound effect */
         public static void DrawSellMenu()
         {
             _state = 7;
@@ -164,6 +183,7 @@ namespace monopoly
             }
         }
 
+        /* Handles actions based on the current state of sidebar and player's click coorindates. */
         public void ClickHandler(double x, double y)
         {
             switch (_state)

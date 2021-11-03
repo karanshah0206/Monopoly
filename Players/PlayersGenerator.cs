@@ -14,6 +14,7 @@ namespace monopoly
             _guiController = GUIController.GetInstance();
         }
 
+        /* Generates 2 to 8 players and returns them in a list. */
         public List<Player> Execute()
         {
             List<Player> players = new();
@@ -26,6 +27,7 @@ namespace monopoly
             return players;
         }
 
+        /* Asks user input for number of players (validates for 2-8 players). */
         private int GetPlayerCount()
         {
             int i;
@@ -38,6 +40,7 @@ namespace monopoly
             return i;
         }
 
+        /* Asks user input for each player's name (validates for non-empty strings). */
         private Player GetPlayer(int playerCount)
         {
             string name;

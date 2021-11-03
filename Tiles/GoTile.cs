@@ -7,16 +7,12 @@
         public GoTile(int salary, int loc) : base(loc, "Go")
         { _salary = salary; }
 
+        /* Moves turn to next player after remunerating current player. */
         public override void Execute(Player p)
-        {
-            CmdTransfer.AddToAccount(p, _salary);
-            Board.NextPlayer();
-        }
+        { Remunerate(p); Board.NextPlayer();}
 
-        public void Execute(Player p, bool nextPlayer)
-        {
-            CmdTransfer.AddToAccount(p, _salary);
-            if (nextPlayer) Board.NextPlayer();
-        }
+        /* Remunerate player with salary. */
+        public void Remunerate(Player p)
+        { CmdTransfer.AddToAccount(p, _salary); }
     }
 }

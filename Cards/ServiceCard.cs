@@ -7,9 +7,11 @@ namespace monopoly
         public ServiceCard(int[] rentList, string title) : base (rentList, title)
         { }
 
+        /* Return integer rent based on number of services owned and dice value. */
         public int CalculateRent(int serviceCount, int diceValue)
         { return _rentList[serviceCount - 1] * diceValue; }
 
+        /* Draw the card. */
         public override void Draw()
         {
             int price = CmdCardActions.GetTileByCard(this).Price;

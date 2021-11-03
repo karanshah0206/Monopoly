@@ -8,6 +8,7 @@
         public Tile(int loc, string name)
         { _loc = loc; _name = name; }
 
+        /* Actions to perform when player lands on tile. */
         public abstract void Execute(Player p);
 
         public int Location
