@@ -1,10 +1,7 @@
-/// <author>Karan Manoj Shah</author>
-/// <description>A GUI-Based Digital Monopoly Game For 2-8 Players.</description>
-/// 
-/// <studentId>103141481</studentId>
-/// <unit>COS20007 Object Oriented Programming</unit>
-/// <uni>Swinburne University of Technology</uni>
-/// <date>November 2021</date>
+/* Monopoly: A GUI-Based Digital Monopoly Game For 2-8 Players
+ * Name: Karan Manoj Shah | Student ID: 103141481
+ * Unit: COS20007 Object Oriented Programming
+ * Semester 2 2021 | Swinburne University of Technology */
 
 using System.Collections.Generic;
 using SplashKitSDK;
